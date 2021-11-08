@@ -7,10 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MyDatabase  extends SQLiteOpenHelper {
 
     private Context context;
-    // naming the database
+
+    // Create constants and database parameters
     private static final String DATABASE_NAME = "iMarket.db";
     private static final int DATABASE_VERSION = 1;
-    // table 1
+
+    // Define column names in Table user
     private static final String User_Table = "User";
     private static final String User_Column_ID = "ID";
     private static final String User_Column_Name = "Name";
@@ -20,7 +22,7 @@ public class MyDatabase  extends SQLiteOpenHelper {
     private static final String User_Column_Location = "Location";
     private static final String User_Column_DateCreated = "DateCreated";
 
-    // table 2
+    // Define column names in Table Product
     private static final String Product_Table = "Product";
     private static final String Product_Column_ID = "ID";
     private static final String Product_Column_Name = "Name";
@@ -31,6 +33,7 @@ public class MyDatabase  extends SQLiteOpenHelper {
     private static final String Product_Column_UserID = "UserId";
 
 
+    // Define the constructor
     public MyDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
@@ -38,6 +41,9 @@ public class MyDatabase  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        System.out.println("On create event handler called from DATABASE HELPER");
+        // Query to create User table
         String query = "CREATE TABLE " + User_Table +
                 " (" + User_Column_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 User_Column_Name + " TEXT," +
@@ -50,6 +56,7 @@ public class MyDatabase  extends SQLiteOpenHelper {
 
         db.execSQL(query);
 
+        // Query to create Product table
         String query2= "CREATE TABLE " + Product_Table +
                 " (" + Product_Column_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 Product_Column_Name + " TEXT," +
