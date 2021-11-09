@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.UserRegistrationActivity">
+
+    <EditText
+        android:id="@+id/editTextNameRegistration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/black"
+        android:hint="Enter Name"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextEmailRegistration"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/editTextNameRegistration"
+        android:hint="Enter email"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:backgroundTint="@color/black"
+        />
+
+    <DatePicker
+        android:id="@+id/datePickerRegistration"
+        android:layout_width="274dp"
+        android:layout_height="320dp"
+        android:layout_below="@id/editTextEmailRegistration"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:calendarTextColor="@color/black" />
+
+    <EditText
+        android:id="@+id/editTextPasswordRegistration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/datePickerRegistration"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="1dp"
+        android:backgroundTint="@color/black"
+        android:hint="Enter password"
+        android:password="true"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/buttonRegister"
+        android:layout_below="@id/editTextPasswordRegistration"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/teal_200"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:onClick="registerUser"
+        />
+
+</RelativeLayout>

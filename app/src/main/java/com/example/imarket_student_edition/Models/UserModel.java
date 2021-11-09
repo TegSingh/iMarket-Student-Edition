@@ -1,4 +1,4 @@
-package com.example.imarket_student_edition;
+package com.example.imarket_student_edition.Models;
 
 import java.util.Date;
 

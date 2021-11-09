@@ -1,4 +1,4 @@
-package com.example.imarket_student_edition;
+package com.example.imarket_student_edition.DatabaseHelper;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
