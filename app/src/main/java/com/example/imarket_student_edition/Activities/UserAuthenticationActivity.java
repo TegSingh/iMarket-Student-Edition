@@ -22,6 +22,7 @@ public class UserAuthenticationActivity extends AppCompatActivity {
     public void loginButtonClickListener(View v) {
 
         System.out.println("Login button was clicked");
+
         EditText editTextEmail = findViewById(R.id.editTextEmail);
         EditText editTextPassword = findViewById(R.id.editTextPassword);
         String email = editTextEmail.getText().toString();
@@ -39,6 +40,8 @@ public class UserAuthenticationActivity extends AppCompatActivity {
             // ADD ANY REQUIRED INTENTS OR ERROR MESSAGES HERE
         }
 
+        Intent i = new Intent(this, ProductPageActivity.class);
+        startActivity(i);
     }
 
     // Method to move to the registration activity
@@ -48,6 +51,5 @@ public class UserAuthenticationActivity extends AppCompatActivity {
         // Create the intent for the new activity and start the activity
         Intent i = new Intent(this, UserRegistrationActivity.class);
         startActivity(i);
-
     }
 }
