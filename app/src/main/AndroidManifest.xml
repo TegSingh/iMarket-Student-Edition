@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IMarketStudentEdition">
         <activity
+            android:name=".Activities.ProductPageActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activities.UserRegistrationActivity"
             android:exported="true" />
         <activity

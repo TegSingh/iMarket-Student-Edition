@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">iMarket-Student-Edition</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_fragment">Home fragment</string>
+    <string name="profile_fragment">Profile fragment</string>
+    <string name="saved_fragment">Saved Products fragment</string>
 </resources>
