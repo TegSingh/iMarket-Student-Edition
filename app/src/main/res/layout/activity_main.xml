@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".Activities.MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_700"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:logo="@drawable/ic_menu_pick"
+        app:title="iMarket"
+        app:titleMarginStart="40dp"
+
+        />
     <ImageView
         android:id="@+id/imageIMarket"
         android:layout_width="360dp"

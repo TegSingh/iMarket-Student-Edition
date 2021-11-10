@@ -20,6 +20,8 @@ public class UserAuthenticationActivity extends AppCompatActivity {
 
     // Method to Log the user in
     public void loginButtonClickListener(View v) {
+        Intent i = new Intent(this, ProductPageActivity.class);
+        startActivity(i);
 
         System.out.println("Login button was clicked");
 
@@ -35,13 +37,13 @@ public class UserAuthenticationActivity extends AppCompatActivity {
         if (result) {
             System.out.println("User authenticated successfully");
             // ADD ANY REQUIRED INTENTS OR LINKS HERE
+
         } else {
             System.out.println("Couldnt find user information");
             // ADD ANY REQUIRED INTENTS OR ERROR MESSAGES HERE
         }
 
-        Intent i = new Intent(this, ProductPageActivity.class);
-        startActivity(i);
+
     }
 
     // Method to move to the registration activity
