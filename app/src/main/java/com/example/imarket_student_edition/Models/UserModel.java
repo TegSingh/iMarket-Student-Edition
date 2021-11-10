@@ -7,12 +7,12 @@ public class UserModel {
     private String name;
     private String email;
     private String password;
-    private Date dob;
+    private String dob;
     private String location;
-    private Date date_created;
+    private String date_created;
 
     // Declare the constructor
-    public UserModel(int id, String name, String email, String password, Date dob, String location, Date date_created) {
+    public UserModel(int id, String name, String email, String password, String dob, String location, String date_created) {
         System.out.println("Constructor for the model USER called");
         this.id = id;
         this.name = name;
@@ -55,11 +55,11 @@ public class UserModel {
         this.password = password;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -71,11 +71,11 @@ public class UserModel {
         this.location = location;
     }
 
-    public Date getDate_created() {
+    public String getDate_created() {
         return date_created;
     }
 
-    public void setDate_created(Date date_created) {
+    public void setDate_created(String date_created) {
         this.date_created = date_created;
     }
 
