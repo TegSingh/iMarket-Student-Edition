@@ -5,4 +5,5 @@
     <string name="home_fragment">Home fragment</string>
     <string name="profile_fragment">Profile fragment</string>
     <string name="saved_fragment">Saved Products fragment</string>
+    <string name="search">search</string>
 </resources>
