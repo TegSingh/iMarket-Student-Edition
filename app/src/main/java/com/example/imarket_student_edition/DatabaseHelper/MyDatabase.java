@@ -87,30 +87,8 @@ public class MyDatabase  extends SQLiteOpenHelper {
         System.out.println("Authenticate User method called from database helper");
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // Define the columns to fetch
-        String[] fetch_columns = {
-                User_Column_Name,
-        };
-
-        // Define the columns to select in where query
-        String selection_criteria = User_Column_Email + " = ? ";
-
-        // Define the column names for the where clause
-        String[] where_clause_columns = {
-                email,
-                password
-        };
-
-        // Select the name from the given email and password
-        Cursor cursor = db.query(
-                User_Table,
-                fetch_columns,
-                selection_criteria,
-                where_clause_columns,
-                null,
-                null,
-                null
-        );
+        String query = "SELECT * FROM " + User_Table + " WHERE " + User_Column_Email + "=\'" + email + "\' AND " + User_Column_Password + "=\'" + password + "\'";
+        Cursor cursor = db.rawQuery(query, null);
 
         // Get the number of users with the given email and password
         int number_of_users = cursor.getCount();
@@ -120,24 +98,12 @@ public class MyDatabase  extends SQLiteOpenHelper {
             cursor.moveToFirst();
             // Get user name which is the second column
             String fetched_user_name = cursor.getString(1);
-            System.out.println("User found: Name: ");
-
-            // Check if password matches
-            String fetched_password = cursor.getString(3);
+            System.out.println("User found: Name: " + fetched_user_name + " authenticated");
 
             // Close the cursor and database object
             cursor.close();
             db.close();
-
-            if (password.equals(fetched_password)) {
-                System.out.println("Database Helper: Wrong password. Please Try again");
-
-                return true;
-            } else {
-                System.out.println("Database Helper: Wrong password. Please Try again");
-                // Close the cursor and database object
-                return false;
-            }
+            return true;
 
         } else if (number_of_users == 0) {
             System.out.println("Database Helper: User email not found");
@@ -168,6 +134,8 @@ public class MyDatabase  extends SQLiteOpenHelper {
 
                 //make note and add to list
                 UserModel user = new UserModel(id, name, email, password, dob, location, date_created);
+                // Print the user information
+                System.out.println();
                 user_list.add(user);
             } while(cur.moveToNext());
         }

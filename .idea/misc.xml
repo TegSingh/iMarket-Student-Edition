@@ -3,16 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/ic_menu_option.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_add_note.xml" value="0.2453125" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18704710144927536" />
-        <entry key="app/src/main/res/layout/activity_product_page.xml" value="0.1308876811594203" />
-        <entry key="app/src/main/res/layout/activity_user_authentication.xml" value="0.1308876811594203" />
-        <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.2453125" />
-        <entry key="app/src/main/res/menu/menu.xml" value="0.2453125" />
+        <entry key="..\:/Users/tegve/AndroidStudioProjects/iMarket-Student-Edition/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/tegve/AndroidStudioProjects/iMarket-Student-Edition/app/src/main/res/layout/activity_main.xml" value="0.26145833333333335" />
+        <entry key="..\:/Users/tegve/AndroidStudioProjects/iMarket-Student-Edition/app/src/main/res/layout/activity_user_authentication.xml" value="0.1" />
+        <entry key="..\:/Users/tegve/AndroidStudioProjects/iMarket-Student-Edition/app/src/main/res/layout/activity_user_registration.xml" value="0.1" />
+        <entry key="..\:/Users/tegve/AndroidStudioProjects/iMarket-Student-Edition/app/src/main/res/layout/fragment_home_page.xml" value="0.1875" />
+        <entry key="..\:/Users/tegve/AndroidStudioProjects/iMarket-Student-Edition/app/src/main/res/layout/fragment_profile_page.xml" value="0.1875" />
+        <entry key="..\:/Users/tegve/AndroidStudioProjects/iMarket-Student-Edition/app/src/main/res/layout/fragment_saved_paged.xml" value="0.1875" />
       </map>
     </option>
   </component>
