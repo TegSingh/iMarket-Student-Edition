@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.imarket_student_edition.Models.ProductModel;
 import com.example.imarket_student_edition.Models.UserModel;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -144,16 +145,92 @@ public class MyDatabase  extends SQLiteOpenHelper {
         return user_list;
     }
 
+    // Method to get all products
+    public ArrayList<ProductModel> get_all_products() {
+        System.out.println("Database helper: Method to get all products called");
+        ArrayList<ProductModel> products = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + Product_Table;
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String name = cursor.getString(1);
+                String image_video = cursor.getString(2);
+                String description = cursor.getString(3);
+                String date_created = cursor.getString(4);
+                Float price = cursor.getFloat(5);
+                int user_id = cursor.getInt(6);
+
+                ProductModel product = new ProductModel(id, name, image_video, description, date_created, price, user_id);
+                System.out.println("Product: " + product.toString());
+                products.add(product);
+            } while (cursor.moveToNext());
+        }
+
+        return products;
+    }
+
     // Method  to update a user in the table
-    public boolean update_user(int id, UserModel user) {
-        System.out.println("Update the user with id: " + id);
-        return false;
+    public boolean update_user(UserModel user, UserModel user_updated) {
+        System.out.println("Database helper: Update the user with id: ");
+        System.out.println("Previous User: " + user.toString());
+        System.out.println("Updated User: " + user_updated.toString());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Content values to be used as update argument
+        ContentValues cv = new ContentValues();
+        cv.put("id", user_updated.getId());
+        cv.put("name", user_updated.getName());
+        cv.put("email", user_updated.getEmail());
+        cv.put("password", user_updated.getPassword());
+        cv.put("location", user_updated.getLocation());
+        cv.put("data_created", user_updated.getDate_created());
+
+        String whereClause = "id = ?";
+        Integer id = new Integer(user_updated.getId());
+
+        String whereArgs[] = {id.toString()};
+        int result = db.update(User_Column_Name, cv, whereClause, whereArgs);
+        if (result == 1) {
+            System.out.println("Update successful User");
+            return true;
+        } else {
+            System.out.println("Could not update user");
+            return false;
+        }
     }
 
     // Method  to update a user in the product table
-    public boolean update_product(int id, ProductModel product) {
-        System.out.println("Update the Product with id: " + id);
-        return false;
+    public boolean update_product(ProductModel product, ProductModel product_updated) {
+        System.out.println("Database helper: Update the Product");
+        System.out.println("Previous location: " + product.toString());
+        System.out.println("Updated location: " + product_updated.toString());
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Content values to be used as update argument
+        ContentValues cv = new ContentValues();
+        cv.put("id", product_updated.getId());
+        cv.put("name", product_updated.getName());
+        cv.put("image_video", product_updated.getImg_video_url());
+        cv.put("description", product_updated.getDescription());
+        cv.put("date_added", product_updated.getDate_added());
+        cv.put("price", product_updated.getPrice());
+        cv.put("user_id", product_updated.getUser_id());
+
+        String whereClause = "id = ?";
+        Integer id = new Integer(product_updated.getId());
+
+        String whereArgs[] = {id.toString()};
+        int result = db.update(Product_Column_Name, cv, whereClause, whereArgs);
+        if (result == 1) {
+            System.out.println("Database helper: Update successful Product");
+            return true;
+        } else {
+            System.out.println("Database helper: Could not update Product");
+            return false;
+        }
     }
 
     // Method to add user to the table
@@ -210,6 +287,99 @@ public class MyDatabase  extends SQLiteOpenHelper {
             return true;
         }
 
+    }
+
+    // Method to delete a product from the table
+    public boolean delete_user(int id) {
+
+        System.out.println("Database helper: Delete user method called");
+        // Define the database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Integer col_id = id;
+        String[] args = {col_id.toString()};
+        int num_rows_deleted = 0;
+        try {
+            num_rows_deleted = db.delete(User_Table, User_Column_ID + " = ? ", args);
+        } catch (Exception e) {
+            System.out.println("Database helper: Error executing delete query for user");
+            db.close();
+            return false;
+        }
+
+        if (num_rows_deleted == 1) {
+            System.out.println("Database helper: User row deleted successfully");
+            db.close();
+            return true;
+        } else if (num_rows_deleted == 0) {
+            System.out.println("Database helper: Error deleting user, Row not found");
+            db.close();
+            return false;
+        } else {
+            System.out.println("Database helper: Error deleting User: too many rows deleted: " + num_rows_deleted);
+            db.close();
+            return true;
+        }
+    }
+
+    // Method to delete a user from the table
+    public boolean delete_product(int id) {
+        System.out.println("Database helper: Delete Product method called");
+        // Define the database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Integer col_id = id;
+        String[] args = {col_id.toString()};
+        int num_rows_deleted = 0;
+        try {
+            num_rows_deleted = db.delete(Product_Table, Product_Column_ID + " = ? ", args);
+        } catch (Exception e) {
+            System.out.println("Database helper: Error executing delete query for product");
+            db.close();
+            return false;
+        }
+
+        if (num_rows_deleted == 1) {
+            System.out.println("Database helper: Product row deleted successfully");
+            db.close();
+            return true;
+        } else if (num_rows_deleted == 0) {
+            System.out.println("Database helper: Error deleting Product, Row not found");
+            db.close();
+            return false;
+        } else {
+            System.out.println("Database helper: Error deleting Product, too many rows deleted: " + num_rows_deleted);
+            db.close();
+            return true;
+        }
+    }
+
+    // Method to search product by product name
+    public ArrayList<ProductModel> search_products(String name) {
+
+        System.out.println("Database helper: Method to search product called");
+        ArrayList<ProductModel> filtered_products = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + Product_Table + " WHERE " + Product_Column_Name + " LIKE \'%" + name + "%\'";
+        Cursor cursor = db.rawQuery(query, null);
+        System.out.println("Number of products fetched: " + cursor.getCount());
+
+        if (cursor.moveToFirst()) {
+            do {
+                // Get the variable names from the cursor
+                int id = cursor.getInt(0);
+                String product_name = cursor.getString(1);
+                String image_video = cursor.getString(2);
+                String description = cursor.getString(3);
+                String product_date_created = cursor.getString(4);
+                Float price = cursor.getFloat(5);
+                int user_id = cursor.getInt(6);
+                filtered_products.add(new ProductModel(id, product_name, image_video, description, product_date_created, price, user_id));
+
+            } while (cursor.moveToNext());
+        }
+
+        return filtered_products;
     }
 
 }
