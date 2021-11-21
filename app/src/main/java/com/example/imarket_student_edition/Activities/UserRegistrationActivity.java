@@ -41,22 +41,22 @@ import java.util.Locale;
 public class UserRegistrationActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 2;
-    FusedLocationProviderClient fusedLocationProviderClient;
-    int id;
-    String name, email, password, location, date_created;
     EditText editTextNameRegistration, editTextEmailRegistration, editTextPasswordRegistration;
+    FusedLocationProviderClient fusedLocationProviderClient;
     UserModel user;
+
+    String name, email, password, location, date_created;
+    boolean validate = false;
+    int id;
 
     // Add my database helper
     MyDatabase database_helper = new MyDatabase(this);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_registration);
         // Get the intent in case any date needs to be accessed
         Intent i = getIntent();
-
         // Set the fused location provider client
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
@@ -65,55 +65,53 @@ public class UserRegistrationActivity extends AppCompatActivity {
     @SuppressLint("WrongViewCast")
     public void registerUser(View v) {
         System.out.println("Method to Register User called from user registration activity. Going back to Login");
-
         // Call method to set the input values
-        get_input_values();
-
-        // Create a user model
-        user = new UserModel(id, name, email, password, location, date_created);
-        System.out.println("User to be added: " + user.toString());
-
-        // Use database helper to add the user to the database
-        boolean result = database_helper.insert_user(user);
-
-        if (result) {
-            // Print the updated list
-            ArrayList<UserModel> user_list = database_helper.get_all_users();
-            print_user_list(user_list);
-
-            System.out.println("User registered successfully");
-            Toast.makeText(getApplicationContext(), "User registered successfully", Toast.LENGTH_SHORT).show();
-
-            System.out.println("Moving to the login activity");
-            Intent authenticationActivity = new Intent(getApplicationContext(), UserAuthenticationActivity.class);
-            startActivity(authenticationActivity);
-
-        } else {
-            System.out.println("Could not register user");
+        if(get_input_values()){
+            // Create a user model
+            user = new UserModel(id, name, email, password, location, date_created);
+            System.out.println("User to be added: " + user.toString());
+            // Use database helper to add the user to the database
+            boolean result = database_helper.insert_user(user);
+            if (result) {
+                // Print the updated list
+                ArrayList<UserModel> user_list = database_helper.get_all_users();
+                print_user_list(user_list);
+                System.out.println("User registered successfully");
+                Toast.makeText(UserRegistrationActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+                startUserAuthenticationActivity();
+            }
+        }else{
             Toast.makeText(getApplicationContext(), "Could not register user", Toast.LENGTH_SHORT).show();
         }
     }
 
     // Method to get user inputs
-    public void get_input_values() {
-
+    public boolean get_input_values() {
         // Create the View instance for all the Views in Main Activity
         editTextNameRegistration = findViewById(R.id.editTextNameRegistration);
         editTextEmailRegistration = findViewById(R.id.editTextEmailRegistration);
         editTextPasswordRegistration = findViewById(R.id.editTextPasswordRegistration);
-
         // Set ID using array list size
         id = database_helper.get_all_users().size() + 1;
-        name = editTextNameRegistration.getText().toString();
-        email = editTextEmailRegistration.getText().toString();
-        password = editTextPasswordRegistration.getText().toString();
-
+        // Validating user input
+        if(editTextNameRegistration.getText().toString().trim().length() == 0){
+                editTextNameRegistration.setError("Enter Name");
+        }else if(editTextPasswordRegistration.getText().toString().trim().length() == 0){
+                editTextPasswordRegistration.setError("Enter Password");
+        }else if(editTextEmailRegistration.getText().toString().trim().length() == 0){
+                editTextEmailRegistration.setError("Enter Email");
+        }else{
+            name = editTextNameRegistration.getText().toString().trim();
+            email = editTextEmailRegistration.getText().toString().trim();
+            password = editTextPasswordRegistration.getText().toString().trim();
+            validate = true;
+        }
         // NEED TO ADD LOCATION TRACKING/SOME WAY OF GEOCODING TO THIS
         location = "RANDOM LOCATION";
-
         // Set data_created as current date
         Date date = new Date();
         date_created = date.toString();
+        return validate;
     }
 
     // Method to print the list of users in the table [MAINLY FOR TESTING]
@@ -122,5 +120,13 @@ public class UserRegistrationActivity extends AppCompatActivity {
         for (UserModel user: user_list) {
             System.out.println(user.toString());
         }
+    }
+
+    //Method to move to the login page
+    public void startUserAuthenticationActivity() {
+        System.out.println("Opening Login Page...");
+        // Create the intent for the new activity and start the activity
+        Intent i = new Intent(this, UserAuthenticationActivity.class);
+        startActivity(i);
     }
 }
