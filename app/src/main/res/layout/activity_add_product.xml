@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.ProductPageActivity">
-
+    tools:context=".Activities.AddProductActivity">
 
     <TextView
         android:layout_width="163dp"
@@ -14,7 +13,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="142dp"
         android:layout_marginEnd="124dp"
-        android:text="Test 1"
+        android:text="Test 3"
         android:textColor="@color/black"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +32,5 @@
         app:menu="@menu/bottom_nav_bar"
 
         />
-
 
 </RelativeLayout>
