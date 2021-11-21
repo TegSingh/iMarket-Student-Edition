@@ -1,9 +1,30 @@
 <resources>
     <string name="app_name">iMarket-Student-Edition</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="home_fragment">Home fragment</string>
-    <string name="profile_fragment">Profile fragment</string>
-    <string name="saved_fragment">Saved Products fragment</string>
     <string name="search">search</string>
+    <string name="location">Location: </string>
+    <string name="_123_example_com">123@example.com</string>
+    <string name="email">Email: </string>
+    <string name="name">Name: </string>
+    <string name="password">Password: </string>
+    <string name="current_location">current location</string>
+    <string name="full_name">full name</string>
+    <string name="at_least_8_char">at least 8 char</string>
+    <string name="hi">Hi, </string>
+    <string name="user_name">User Name</string>
+    <string name="your_products">Your Products</string>
+    <string name="update">update</string>
+    <string name="save">save</string>
+    <string name="seller_name">seller_name</string>
+    <string name="seller_phone">seller_phone</string>
+    <string name="add_product">add_product</string>
+    <string name="contact_info">contact_info</string>
+    <string name="production_info">production_info</string>
+    <string name="price">price</string>
+    <string name="condition_hint">condition_hint</string>
+    <string name="product_name">product_name</string>
+    <string name="number">number</string>
+    <string name="cad">cad</string>
+    <string name="condition">condition</string>
+    <string name="image_desc">image_desc</string>
 </resources>
