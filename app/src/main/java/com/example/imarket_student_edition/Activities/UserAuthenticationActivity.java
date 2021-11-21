@@ -34,13 +34,21 @@ public class UserAuthenticationActivity extends AppCompatActivity {
         // Get DataBase helper for checking user
         MyDatabase database_helper = new MyDatabase(this);
         boolean result = database_helper.authenticateUser(email, password);
+
         if (result) {
             System.out.println("User authenticated successfully");
+            // Reset the values in edit text
+            editTextEmail.setText("");
+            editTextPassword.setText("");
             // ADD ANY REQUIRED INTENTS OR LINKS HERE
 
         } else {
-            System.out.println("Couldnt find user information");
+            System.out.println("Couldn't find user information");
+            // Reset the values in edit text
+            editTextEmail.setText("");
+            editTextPassword.setText("");
             // ADD ANY REQUIRED INTENTS OR ERROR MESSAGES HERE
+
         }
 
 

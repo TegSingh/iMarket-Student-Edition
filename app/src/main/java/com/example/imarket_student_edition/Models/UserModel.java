@@ -7,18 +7,16 @@ public class UserModel {
     private String name;
     private String email;
     private String password;
-    private String dob;
     private String location;
     private String date_created;
 
     // Declare the constructor
-    public UserModel(int id, String name, String email, String password, String dob, String location, String date_created) {
+    public UserModel(int id, String name, String email, String password, String location, String date_created) {
         System.out.println("Constructor for the model USER called");
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.dob = dob;
         this.location = location;
         this.date_created = date_created;
     }
@@ -55,14 +53,6 @@ public class UserModel {
         this.password = password;
     }
 
-    public String getDob() {
-        return dob;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
-
     public String getLocation() {
         return location;
     }
@@ -82,6 +72,18 @@ public class UserModel {
     // Overwrite the toString method
     @Override
     public String toString() {
+        return "UserModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", location='" + location + '\'' +
+                ", date_created='" + date_created + '\'' +
+                '}';
+    }
+
+    public String toStringFormatted() {
         return "User ID: " + this.id + " Name: " + this.name + " Location: " + this.location;
     }
+
+
 }

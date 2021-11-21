@@ -30,22 +30,13 @@
         android:backgroundTint="@color/black"
         />
 
-    <DatePicker
-        android:id="@+id/datePickerRegistration"
-        android:layout_width="274dp"
-        android:layout_height="320dp"
-        android:layout_below="@id/editTextEmailRegistration"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:calendarTextColor="@color/black" />
-
     <EditText
         android:id="@+id/editTextPasswordRegistration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/datePickerRegistration"
+        android:layout_below="@id/editTextEmailRegistration"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/black"
         android:hint="Enter password"
         android:password="true"

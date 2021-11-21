@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.imarket_student_edition.Models.ProductModel;
 import com.example.imarket_student_edition.Models.UserModel;
 
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ public class MyDatabase  extends SQLiteOpenHelper {
     private static final String User_Column_Name = "Name";
     private static final String User_Column_Email = "Email";
     private static final String User_Column_Password = "Password";
-    private static final String User_Column_DOB = "DOB";
     private static final String User_Column_Location = "Location";
     private static final String User_Column_DateCreated = "DateCreated";
 
@@ -55,7 +55,6 @@ public class MyDatabase  extends SQLiteOpenHelper {
                 User_Column_Name + " TEXT," +
                 User_Column_Email  + " TEXT," +
                 User_Column_Password + " PASSWORD," +
-                User_Column_DOB + " DATE," +
                 User_Column_Location + " Text," +
                 User_Column_DateCreated + " DATE);";
 
@@ -128,12 +127,12 @@ public class MyDatabase  extends SQLiteOpenHelper {
                 String name = cur.getString(1);
                 String email = cur.getString(2);
                 String password = cur.getString(3);
-                String dob = cur.getString(4);
-                String location = cur.getString(5);
-                String date_created = cur.getString(6);
+                String location = cur.getString(4);
+                String date_created = cur.getString(5);
 
                 //make note and add to list
-                UserModel user = new UserModel(id, name, email, password, dob, location, date_created);
+                UserModel user = new UserModel(id, name, email, password, location, date_created);
+
                 // Print the user information
                 System.out.println();
                 user_list.add(user);
@@ -145,9 +144,22 @@ public class MyDatabase  extends SQLiteOpenHelper {
         return user_list;
     }
 
+    // Method  to update a user in the table
+    public boolean update_user(int id, UserModel user) {
+        System.out.println("Update the user with id: " + id);
+        return false;
+    }
+
+    // Method  to update a user in the product table
+    public boolean update_product(int id, ProductModel product) {
+        System.out.println("Update the Product with id: " + id);
+        return false;
+    }
+
     // Method to add user to the table
     public boolean insert_user(UserModel user) {
         System.out.println("Insert user method called from Database Helper");
+
         SQLiteDatabase db = this.getReadableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -156,18 +168,45 @@ public class MyDatabase  extends SQLiteOpenHelper {
         cv.put(User_Column_Name, user.getName());
         cv.put(User_Column_Email, user.getEmail());
         cv.put(User_Column_Password, user.getPassword());
-        cv.put(User_Column_DOB, user.getDob());
         cv.put(User_Column_Location, user.getLocation());
         cv.put(User_Column_DateCreated, user.getDate_created());
 
         // Add the content values to the database
         long result = db.insert(User_Table, null, cv);
+
         if (result == -1) {
             // Insert was unsuccessful
             System.out.println("Database Helper: User Insert not successful");
             return false;
         } else {
             System.out.println("Database Helper: User Insert Successful");
+            return true;
+        }
+    }
+
+    // Method to add Product to the table
+    public boolean insert_product(ProductModel product) {
+        System.out.println("Insert product method called from Database Helper");
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues cv = new ContentValues();
+
+        // Add values into the content values structure
+        cv.put(Product_Column_ID,  product.getId());
+        cv.put(Product_Column_Name, product.getName());
+        cv.put(Product_Column_Image_video, product.getImg_video_url());
+        cv.put(Product_Column_Description, product.getDescription());
+        cv.put(Product_Column_DateAdded, product.getDate_added());
+        cv.put(Product_Column_Price, product.getPrice());
+        cv.put(Product_Column_UserID, product.getUser_id());
+
+        // Add the content values to the database
+        long result = db.insert(Product_Table, null, cv);
+        if (result == -1) {
+            // Insert was unsuccessful
+            System.out.println("Database Helper: Product Insert not successful");
+            return false;
+        } else {
+            System.out.println("Database Helper: Product Insert Successful");
             return true;
         }
 
