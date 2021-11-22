@@ -37,7 +37,7 @@ public class MyDatabase  extends SQLiteOpenHelper {
     private static final String Product_Column_Description = "Description";
     private static final String Product_Column_DateAdded = "DateAdded";
     private static final String Product_Column_Price = "Price";
-    private static final String Product_Column_UserID = "UserId";
+    private static final String Product_Column_UserID = "UserID";
 
 
     // Define the constructor
@@ -68,7 +68,7 @@ public class MyDatabase  extends SQLiteOpenHelper {
                 Product_Column_Image_video  + " TEXT," +
                 Product_Column_Description + " TEXT," +
                 Product_Column_DateAdded + " DATE," +
-                Product_Column_Price + " DOUBLE," +
+                Product_Column_Price + " Text," +
                 Product_Column_UserID + " INTEGER);";
 
         db.execSQL(query2);
@@ -159,7 +159,7 @@ public class MyDatabase  extends SQLiteOpenHelper {
                 String image_video = cursor.getString(2);
                 String description = cursor.getString(3);
                 String date_created = cursor.getString(4);
-                Float price = cursor.getFloat(5);
+                String price = cursor.getString(5);
                 int user_id = cursor.getInt(6);
 
                 ProductModel product = new ProductModel(id, name, image_video, description, date_created, price, user_id);
@@ -356,7 +356,7 @@ public class MyDatabase  extends SQLiteOpenHelper {
 
     // Method to search product by product name
     public ArrayList<ProductModel> search_products(String name) {
-
+    // Works
         System.out.println("Database helper: Method to search product called");
         ArrayList<ProductModel> filtered_products = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -372,7 +372,7 @@ public class MyDatabase  extends SQLiteOpenHelper {
                 String image_video = cursor.getString(2);
                 String description = cursor.getString(3);
                 String product_date_created = cursor.getString(4);
-                Float price = cursor.getFloat(5);
+                String price = cursor.getString(5);
                 int user_id = cursor.getInt(6);
                 filtered_products.add(new ProductModel(id, product_name, image_video, description, product_date_created, price, user_id));
 

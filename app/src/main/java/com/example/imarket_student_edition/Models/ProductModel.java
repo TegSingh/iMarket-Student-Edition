@@ -8,12 +8,12 @@ public class ProductModel {
     private String img_video_url;
     private String description;
     private String date_added;
-    private float price;
+    private String price;
     // This is the foreign key to the User table forming a one-to-many relationship
     private int user_id;
 
     // Define the constructor
-    public ProductModel(int id, String name, String img_video_url, String description, String date_added, float price, int user_id) {
+    public ProductModel(int id, String name, String img_video_url, String description, String date_added, String price, int user_id) {
         this.id = id;
         this.name = name;
         this.img_video_url = img_video_url;
@@ -63,11 +63,11 @@ public class ProductModel {
         this.date_added = date_added;
     }
 
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
