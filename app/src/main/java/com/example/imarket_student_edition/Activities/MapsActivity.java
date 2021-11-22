@@ -36,7 +36,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ActivityMapsBinding binding;
     private ImageButton imgBtn;
     private SearchView searchView;
-    //private Marker marker;
+    private Marker marker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +65,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Address a = addresses.get(0);
                     //latlng values can be used to get address
                     LatLng latLng = new LatLng(a.getLatitude(), a.getLongitude());
+                    // Removes old markers
+                    if(marker != null) marker.remove();
                     // Add marker on searched location
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(a.getAddressLine(0)));
+                    marker = mMap.addMarker(new MarkerOptions().position(latLng).title(a.getAddressLine(0)));
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,13));
                 } catch (IOException e) {
                     e.printStackTrace();
