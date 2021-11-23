@@ -25,10 +25,11 @@ public class AddProductActivity extends AppCompatActivity {
     FloatingActionButton saveProductButton;
     EditText productName,productPrice, productCondition,productUserName,productUserNumber;
     String productNameInput,productPriceInput, productConditionInput,productUserNameInput,productUserNumberInput;
-    String location, date_Added, image;
+    String  date_Added, image;
+
     int id, user_id;
     ProductModel product;
-    Float productPrice_temp;
+    Boolean validation = false;
 
     // Add my database helper
     MyDatabase database_helper = new MyDatabase(AddProductActivity.this);
@@ -51,19 +52,21 @@ public class AddProductActivity extends AppCompatActivity {
         saveProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getProductData();
-                // Create a user model
-                product = new ProductModel(id,productNameInput, image,productConditionInput, date_Added, productPriceInput,user_id);
-                boolean result = database_helper.insert_product(product);
-                if (result) {
-                    // Print the updated list
-                    ArrayList<ProductModel> product_list = database_helper.get_all_products();
-                    print_product_list(product_list);
-                    System.out.println("Product Added successfully");
-                    Toast.makeText(AddProductActivity.this, "Product added successfully", Toast.LENGTH_SHORT).show();
-                    Intent intent  = new Intent(AddProductActivity.this, ProductPageActivity.class);
-                    startActivity(intent);
-                } else {
+
+                if(getProductData()) {
+                    // Create a user model
+                    product = new ProductModel(id, productNameInput, image, productConditionInput, date_Added, productPriceInput, user_id);
+                    boolean result = database_helper.insert_product(product);
+                    if (result) {
+                        // Print the updated list
+                        ArrayList<ProductModel> product_list = database_helper.get_all_products();
+                        print_product_list(product_list);
+                        System.out.println("Product Added successfully");
+                        Toast.makeText(AddProductActivity.this, "Product added successfully", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(AddProductActivity.this, ProductPageActivity.class);
+                        startActivity(intent);
+                    }
+                }else {
                     Toast.makeText(AddProductActivity.this, "Could not register user", Toast.LENGTH_SHORT).show();
                 }
 
@@ -72,26 +75,39 @@ public class AddProductActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-    public void getProductData(){
+    // validating the user inputs
+    public boolean getProductData(){
 
         id = database_helper.get_all_products().size() + 1;
         user_id = database_helper.get_all_products().size() + 1;
-        productNameInput = productName.getText().toString().trim();
-        productPriceInput = productPrice.getText().toString().trim();
-        productConditionInput = productCondition.getText().toString().trim();
+
+        if(productName.getText().toString().trim().length() == 0){
+
+        }else if(productPrice.getText().toString().trim().length() == 0){
+
+        }else if (productCondition.getText().toString().trim().length() == 0){
+
+        }else {
+            productNameInput = productName.getText().toString().trim();
+            productPriceInput = productPrice.getText().toString().trim();
+            productConditionInput = productCondition.getText().toString().trim();
+            validation = true;
+        }
+
+        //Not used for now
         productUserNameInput = productUserName.getText().toString().trim();
         productUserNumberInput = productUserNumber.getText().toString().trim();
 
+        // Need to add the method to get the path of the image
         image = "No Image";
         // Set data_created as current date
         Date date = new Date();
         date_Added = date.toString();
 
+        return validation;
     }
+
+
         private void print_product_list(ArrayList<ProductModel> product_list) {
             System.out.println("Print Product list method called");
             for (ProductModel product: product_list) {
@@ -99,7 +115,7 @@ public class AddProductActivity extends AppCompatActivity {
             }
         }
 
-
+    // Method for bottom nav bar
     public void bottomNavSelection(){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

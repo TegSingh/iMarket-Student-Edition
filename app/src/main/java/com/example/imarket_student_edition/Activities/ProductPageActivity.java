@@ -34,13 +34,8 @@ public class ProductPageActivity extends AppCompatActivity {
         bottomNavSelection();
         locationImage = findViewById(R.id.imageButton2);
 
+        callCustomAdaptor();
 
-        productModelList = databaseHelper.get_all_products();
-        RecyclerView recyclerView = findViewById(R.id.products_recycleView);
-        customAdapter = new CustomAdapter(ProductPageActivity.this, productModelList);
-        recyclerView.setAdapter(customAdapter);
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(staggeredGridLayoutManager);
 
         locationImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +44,15 @@ public class ProductPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    //  calls CustomAdaptor java file
+    public  void  callCustomAdaptor(){
+        productModelList = databaseHelper.get_all_products();
+        RecyclerView recyclerView = findViewById(R.id.products_recycleView);
+        customAdapter = new CustomAdapter(ProductPageActivity.this, productModelList);
+        recyclerView.setAdapter(customAdapter);
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
     }
 
     public void bottomNavSelection() {
