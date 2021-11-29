@@ -14,11 +14,11 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="2dp"
         android:contentDescription="@string/image_desc"
-        app:layout_constraintEnd_toEndOf="@+id/editText1"
+        app:layout_constraintEnd_toEndOf="@+id/ProductName"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:ignore="ImageContrastCheck"
-        tools:srcCompat="@drawable/ic_image" />
+        app:srcCompat="@drawable/ic_image"
+        android:adjustViewBounds="true"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/ProductPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -40,8 +40,8 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/ediText3"
-        app:layout_constraintStart_toStartOf="@+id/ediText3" />
+        app:layout_constraintBottom_toTopOf="@+id/ProductCondition"
+        app:layout_constraintStart_toStartOf="@+id/ProductCondition" />
 
     <TextView
         android:id="@+id/textView8"
@@ -54,7 +54,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/ProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -63,11 +63,11 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/editText2"
+        app:layout_constraintStart_toStartOf="@+id/ProductPrice"
         tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/ediText3"
+        android:id="@+id/ProductCondition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
@@ -87,7 +87,7 @@
         android:layout_marginStart="55dp"
         android:layout_marginBottom="10dp"
         android:text="@string/price"
-        app:layout_constraintBottom_toBottomOf="@+id/editText2"
+        app:layout_constraintBottom_toBottomOf="@+id/ProductPrice"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -96,8 +96,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="@string/production_info"
-        app:layout_constraintBottom_toTopOf="@+id/editText1"
-        app:layout_constraintStart_toStartOf="@+id/editText1" />
+        app:layout_constraintBottom_toTopOf="@+id/ProductName"
+        app:layout_constraintStart_toStartOf="@+id/ProductName" />
 
     <TextView
         android:id="@+id/textView5"
@@ -105,8 +105,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="27dp"
         android:text="@string/contact_info"
-        app:layout_constraintBottom_toTopOf="@+id/editText4"
-        app:layout_constraintStart_toStartOf="@+id/editText4" />
+        app:layout_constraintBottom_toTopOf="@+id/ProductUserName"
+        app:layout_constraintStart_toStartOf="@+id/ProductUserName" />
 
     <TextView
         android:id="@+id/textView2"
@@ -115,8 +115,8 @@
         android:layout_marginEnd="31dp"
         android:layout_marginBottom="34dp"
         android:text="@string/name"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
-        app:layout_constraintEnd_toStartOf="@+id/editText1" />
+        app:layout_constraintBottom_toTopOf="@+id/ProductPrice"
+        app:layout_constraintEnd_toStartOf="@+id/ProductName" />
 
     <TextView
         android:id="@+id/textView"
@@ -135,11 +135,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="33dp"
         android:text="@string/name"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText4"
-        app:layout_constraintEnd_toStartOf="@+id/editText4" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/ProductUserName"
+        app:layout_constraintEnd_toStartOf="@+id/ProductUserName" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/ProductUserNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -153,7 +153,7 @@
         tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/ProductUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
@@ -163,36 +163,42 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumber"
+        app:layout_constraintBottom_toTopOf="@+id/ProductUserNumber"
+        app:layout_constraintStart_toStartOf="@+id/ProductUserNumber"
         tools:ignore="TextContrastCheck" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:contentDescription="@string/todo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_check_circle_24"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             app:itemBackground="@color/teal_700"
             app:itemIconTint="@drawable/selector"
             app:itemTextColor="@drawable/selector"
             app:menu="@menu/bottom_nav_bar" />
 
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/bottom_nav"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="15dp"
-            android:text="@string/save"
-            android:textColor="@color/white"
-            tools:ignore="TextContrastCheck" />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,4 +29,7 @@
     <string name="image_desc">image_desc</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="backimagebutton">BackImageButton</string>
+    <string name="available_products">Available Products</string>
+    <string name="todo">TODO</string>
+
 </resources>
