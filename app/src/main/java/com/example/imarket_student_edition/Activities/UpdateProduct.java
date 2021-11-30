@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.imarket_student_edition.DatabaseHelper.MyDatabase;
 import com.example.imarket_student_edition.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,6 +26,7 @@ public class UpdateProduct extends AppCompatActivity {
     FloatingActionButton UpdateProductButton, delProductButton;
     ImageView updateImage;
     BottomNavigationView bottomNavigationView;
+    MyDatabase database_helper = new MyDatabase(UpdateProduct.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,17 +54,25 @@ public class UpdateProduct extends AppCompatActivity {
             productCondition.setText(productConditionInput);
             productPrice.setText(productPriceInput);
             updateImage.setImageBitmap(BitmapFactory.decodeFile(String.valueOf(imagePath)));
-            if(getIntent().hasExtra("UserName")) {
-               // System.out.println("Inside the userName intent on Add product");
-                uname = getIntent().getStringExtra("UserName");
-                update_page_user_name.setText(uname);
+            get_current_user_info();
 
-            }else {
-                update_page_user_name.setText("No user detected");
-            }
 
         }else {
             Toast.makeText(UpdateProduct.this, "No data.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void get_current_user_info(){
+        Cursor cursor;
+        cursor = database_helper.getData();
+        if(cursor.getCount() == 0) {
+            Toast.makeText(UpdateProduct.this, "No data found in database!", Toast.LENGTH_SHORT).show();
+
+        }else if(cursor.getCount() >0){
+            cursor.moveToFirst();
+            update_page_user_name.setText(cursor.getString(1));
+            // IF WE NEED TO USE USER ID JUST UNCOMMENT THE STATEMENT AND SET IT TO A VAIRABLE
+            //user_id = Integer.parseInt(cursor.getString(2));
         }
     }
 

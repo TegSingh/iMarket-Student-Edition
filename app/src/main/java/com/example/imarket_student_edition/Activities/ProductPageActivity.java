@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.imarket_student_edition.DatabaseHelper.MyDatabase;
 import com.example.imarket_student_edition.Models.ProductModel;
@@ -45,25 +47,10 @@ public class ProductPageActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setSelectedItemId(R.id.home);
         userName = findViewById(R.id.UserLoginName);
-            if(getIntent().hasExtra("email")) {
-                user_Name = getIntent().getStringExtra("email");
-                user_Name = databaseHelper.userName(user_Name);
-                user_id = databaseHelper.userID();
-                //System.out.println(user_id+ "   - this is the id for the user ********");
-                userName.setText( "Logged in as: "+ user_Name);
-            }else if(getIntent().hasExtra("UserName")){
-                user_Name = getIntent().getStringExtra("UserName");
-                userName.setText( "Logged in as: "+ user_Name);
-            }
-            else {
-                userName.setText("No user detected");
-            }
+        get_current_user_info();
         bottomNavSelection();
         locationImage = findViewById(R.id.imageButton2);
-
         callCustomAdaptor();
-
-
         locationImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +83,21 @@ public class ProductPageActivity extends AppCompatActivity {
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
     }
+    public void get_current_user_info(){
+        Cursor cursor;
+        cursor = databaseHelper.getData();
+        if(cursor.getCount() == 0) {
+            Toast.makeText(ProductPageActivity.this, "No data found in database!", Toast.LENGTH_SHORT).show();
+
+        }else if(cursor.getCount() >0){
+            cursor.moveToFirst();
+            userName.setText( "Logged in as: "+ cursor.getString(1));
+            user_id = cursor.getString(2);
+            user_Name = cursor.getString(1);
+            }
+    }
+
+
 
     public void bottomNavSelection() {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -104,7 +106,6 @@ public class ProductPageActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.user:
                         Intent intent = new Intent(ProductPageActivity.this, UserActivity.class);
-                        intent.putExtra("UserName",user_Name);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
@@ -114,8 +115,6 @@ public class ProductPageActivity extends AppCompatActivity {
 
                     case R.id.bookmark:
                         Intent intent1 = new Intent(ProductPageActivity.this, AddProductActivity.class);
-                        intent1.putExtra("UserName",user_Name);
-                        intent1.putExtra("UserId", user_id);
                         startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;

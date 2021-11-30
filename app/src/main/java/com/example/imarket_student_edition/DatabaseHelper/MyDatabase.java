@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import com.example.imarket_student_edition.Models.ProductModel;
 import com.example.imarket_student_edition.Models.UserModel;
@@ -39,6 +40,12 @@ public class MyDatabase  extends SQLiteOpenHelper {
     private static final String Product_Column_DateAdded = "DateAdded";
     private static final String Product_Column_Price = "Price";
     private static final String Product_Column_UserID = "UserID";
+    private static final String Product_Column_UserPhoneNumber = "UserID";
+
+    private static final String NewUserTable = "NewUserTable";
+    private static final String NewUserTableID = "NewUserTableID";
+    private static final String NewUserName = "CurrentName";
+    private static final String NewUserID = "UserID";
 
 
     // Define the constructor
@@ -74,12 +81,20 @@ public class MyDatabase  extends SQLiteOpenHelper {
 
         db.execSQL(query2);
 
+        String query3= "CREATE TABLE " + NewUserTable +
+                " (" + NewUserTableID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                NewUserName + " TEXT," +
+                NewUserID+ " TEXT);";
+
+        db.execSQL(query3);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + User_Table);
         db.execSQL("DROP TABLE IF EXISTS " + Product_Table);
+        db.execSQL("DROP TABLE IF EXISTS " + NewUserTable);
         onCreate(db);
     }
 
@@ -100,7 +115,9 @@ public class MyDatabase  extends SQLiteOpenHelper {
             // Get user name which is the second column
             String fetched_user_name = cursor.getString(1);
             System.out.println("User found: Name: " + fetched_user_name + " authenticated");
-
+            String fetched_userid = cursor.getString(0);
+            // Calling the insert current user detail function
+            insert_Current_user_detail(fetched_user_name,fetched_userid);
             // Close the cursor and database object
             cursor.close();
             db.close();
@@ -113,6 +130,48 @@ public class MyDatabase  extends SQLiteOpenHelper {
             // THE CODE SHOULD NOT REACH THIS ELSE STATEMENT AFTER CORRECT EMAIL VALIDATION IN REGISTRATION
             return false;
         }
+    }
+
+    public void  insert_Current_user_detail(String CurrentUser , String CurrentUserId){
+        System.out.println("Enter the insert current user detail method");
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(NewUserName, CurrentUser);
+        cv.put(NewUserID, CurrentUserId);
+
+        String query1 = " SELECT * FROM " + NewUserTable  ;
+        Cursor cursor = db.rawQuery(query1,null);
+
+        int number_of_rows = cursor.getCount();
+        if(number_of_rows == 0){
+            long check_result = db.insert(NewUserTable, null, cv);
+            if (check_result == -1) {
+                Toast.makeText(context, "Failed to New user", Toast.LENGTH_SHORT).show();
+                System.out.println("New user not added");
+            } else {
+                Toast.makeText(context, "Added User Successfully", Toast.LENGTH_SHORT).show();
+                System.out.println("New user added*************************");
+            }
+        }else{
+            long result = db.update (NewUserTable, cv , NewUserTableID +"=?", new String[] {"1"} );
+            if(result == -1){
+                Toast.makeText(context, "Failed to update*******", Toast.LENGTH_SHORT).show();
+            }else {
+                System.out.println(" the result is :"+ result);
+                Toast.makeText(context, "Updated Successfully********", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
+    public Cursor getData() {
+        String query = "SELECT * FROM " + NewUserTable;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
     }
 
 

@@ -38,7 +38,7 @@ public class AddProductActivity extends AppCompatActivity {
     EditText productName,productPrice, productCondition,productUserName,productUserNumber;
     String productNameInput,productPriceInput, productConditionInput,productUserNameInput,productUserNumberInput, date_Added;
     String  imagePath = "No Image";
-    int id, user_id;
+    int product_id, user_id;
     ProductModel product;
     Boolean validation = false;
     ImageView image_selection, camera,imageDestination;
@@ -67,17 +67,8 @@ public class AddProductActivity extends AppCompatActivity {
         productUserNumber = findViewById(R.id.ProductUserNumber);
         image_selection = findViewById(R.id.Select_image);
         imageDestination = findViewById(R.id.add_product_image);
-        if(getIntent().hasExtra("UserName")) {
-            System.out.println("Inside the userName intent on Add product");
-            productUserNameInput = getIntent().getStringExtra("UserName");
-            productUserName.setText(String.valueOf(productUserNameInput));
-            //user_id = Integer.parseInt(getIntent().getStringExtra("UserId"));
-        }else if(getIntent().hasExtra("UserId")){
-            user_id = Integer.parseInt(getIntent().getStringExtra("UserId"));
-        }
-        else {
-            productUserName.setText("No user detected");
-        }
+
+        get_current_user_info();
 
         saveProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +76,7 @@ public class AddProductActivity extends AppCompatActivity {
 
                 if(getProductData()) {
                     // Create a user model
-                    product = new ProductModel(id, productNameInput, imagePath, productConditionInput, date_Added, productPriceInput, user_id);
+                    product = new ProductModel(product_id, productNameInput, imagePath, productConditionInput, date_Added, productPriceInput, user_id);
                     boolean result = database_helper.insert_product(product);
                     if (result) {
                         // Print the updated list
@@ -120,6 +111,19 @@ public class AddProductActivity extends AppCompatActivity {
         });
 
     }
+    public void get_current_user_info(){
+        Cursor cursor;
+        cursor = database_helper.getData();
+        if(cursor.getCount() == 0) {
+            Toast.makeText(AddProductActivity.this, "No data found in database!", Toast.LENGTH_SHORT).show();
+
+        }else if(cursor.getCount() >0){
+            cursor.moveToFirst();
+            productUserName.setText(cursor.getString(1));
+            user_id = Integer.parseInt(cursor.getString(2));
+            productUserNameInput = cursor.getString(1);
+        }
+    }
 
     private void selectImage(){
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -132,7 +136,6 @@ public class AddProductActivity extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 100);
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -147,7 +150,6 @@ public class AddProductActivity extends AppCompatActivity {
 
         }
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -223,7 +225,7 @@ public class AddProductActivity extends AppCompatActivity {
 
     // validating the user inputs
     public boolean getProductData(){
-        id = database_helper.get_all_products().size() + 1;
+        product_id = database_helper.get_all_products().size() + 1;
 
         if(productName.getText().toString().trim().length() == 0){
             productName.setError("Enter Product Name");
@@ -262,15 +264,13 @@ public class AddProductActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.user:
                         Intent intent = new Intent(AddProductActivity.this, UserActivity.class);
-                        intent.putExtra("UserName", productUserNameInput);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.home:
-                        Intent intent3 = new Intent(AddProductActivity.this, ProductPageActivity.class);
-                        intent3.putExtra("UserName",productUserNameInput);
-                        startActivity(intent3);
+                        Intent intent2 = new Intent(AddProductActivity.this, ProductPageActivity.class);
+                        startActivity(intent2);
                         overridePendingTransition(0,0);
                         return  true;
 
