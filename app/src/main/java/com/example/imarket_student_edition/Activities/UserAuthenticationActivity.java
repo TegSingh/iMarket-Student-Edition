@@ -40,10 +40,12 @@ public class UserAuthenticationActivity extends AppCompatActivity {
         if(result){
             Toast.makeText(this, "User Authenticated Successfully!", Toast.LENGTH_SHORT).show();
             // Reset the values in edit text
+
             editTextEmail.setText("");
             editTextPassword.setText("");
             // ADD ANY REQUIRED INTENTS OR LINKS HERE
-            startProductPageActivity();
+
+            startProductPageActivity(email);
         } else {
             Toast.makeText(this, "Invalid Email or Password!", Toast.LENGTH_SHORT).show();
             // Reset the values in edit text
@@ -62,10 +64,11 @@ public class UserAuthenticationActivity extends AppCompatActivity {
     }
 
     //Method to move to the products home page
-    public void startProductPageActivity() {
+    public void startProductPageActivity(String email) {
         System.out.println("Opening Product Page Activity...");
         // Create the intent for the new activity and start the activity
         Intent i = new Intent(this, ProductPageActivity.class);
+        i.putExtra("email",email);
         startActivity(i);
     }
 

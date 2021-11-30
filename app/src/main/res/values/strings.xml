@@ -17,14 +17,14 @@
     <string name="save">save</string>
     <string name="seller_name">seller_name</string>
     <string name="seller_phone">seller_phone</string>
-    <string name="add_product">add_product</string>
-    <string name="contact_info">contact_info</string>
-    <string name="production_info">production_info</string>
-    <string name="price">price</string>
+    <string name="add_product">Add Product</string>
+    <string name="contact_info">Contact Info</string>
+    <string name="production_info">Production info</string>
+    <string name="price">Price</string>
     <string name="condition_hint">condition_hint</string>
-    <string name="product_name">product_name</string>
-    <string name="number">number</string>
-    <string name="cad">cad</string>
+    <string name="product_name">Product Name</string>
+    <string name="number">Number</string>
+    <string name="cad"> $Amount</string>
     <string name="condition">condition</string>
     <string name="image_desc">image_desc</string>
     <string name="title_activity_maps">MapsActivity</string>
@@ -43,5 +43,6 @@
     <string name="name_hint">John Smith</string>
     <string name="already_registered">Already Registered? Log in here.</string>
     <string name="register">register</string>
+    <string name="update_delete">Update/Delete</string>
 
 </resources>

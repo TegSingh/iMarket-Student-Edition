@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class MyDatabase  extends SQLiteOpenHelper {
 
     private Context context;
+    public String user_name, user_id;
 
     // Create constants and database parameters
     private static final String DATABASE_NAME = "iMarket.db";
@@ -114,6 +115,46 @@ public class MyDatabase  extends SQLiteOpenHelper {
         }
     }
 
+
+    //Method to get use ID and Name
+    public String userName(String email) {
+       // System.out.println("Authenticate User method called from database helper");
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + User_Table + " WHERE " + User_Column_Email + "=\'" + email + "\'";
+        Cursor cursor = db.rawQuery(query, null);
+
+        // Get the number of users with the given email and password
+        int number_of_users = cursor.getCount();
+        System.out.println("Number of Users fetched: " + number_of_users);
+
+        if (number_of_users == 1) {
+            cursor.moveToFirst();
+            // Get user name which is the second column
+            user_name = cursor.getString(1);
+            user_id = cursor.getString(0);
+            System.out.println("User found: Name: for product page " + user_name);
+            // Close the cursor and database object
+            cursor.close();
+            db.close();
+            return user_name;
+
+        } else if (number_of_users == 0) {
+            System.out.println("Database Helper: User email not found");
+            return null;
+        } else {
+            // THE CODE SHOULD NOT REACH THIS ELSE STATEMENT AFTER CORRECT EMAIL VALIDATION IN REGISTRATION
+            return null;
+        }
+    }
+    public String userID(){
+        if(user_name.length() != 0){
+            return user_id;
+        }
+        return null;
+    }
+
+
     // Method to get a list of all users
     public ArrayList<UserModel> get_all_users() {
         ArrayList<UserModel> user_list = new ArrayList<>();
@@ -211,13 +252,13 @@ public class MyDatabase  extends SQLiteOpenHelper {
 
         // Content values to be used as update argument
         ContentValues cv = new ContentValues();
-        cv.put("id", product_updated.getId());
+        //cv.put("id", product_updated.getId());
         cv.put("name", product_updated.getName());
         cv.put("image_video", product_updated.getImg_video_url());
         cv.put("description", product_updated.getDescription());
-        cv.put("date_added", product_updated.getDate_added());
+        //cv.put("date_added", product_updated.getDate_added());
         cv.put("price", product_updated.getPrice());
-        cv.put("user_id", product_updated.getUser_id());
+        //cv.put("user_id", product_updated.getUser_id());
 
         String whereClause = "id = ?";
         Integer id = new Integer(product_updated.getId());

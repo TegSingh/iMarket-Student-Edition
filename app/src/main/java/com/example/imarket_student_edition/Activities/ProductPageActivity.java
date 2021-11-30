@@ -1,6 +1,7 @@
 package com.example.imarket_student_edition.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +13,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.imarket_student_edition.DatabaseHelper.MyDatabase;
 import com.example.imarket_student_edition.Models.ProductModel;
@@ -26,6 +29,9 @@ public class ProductPageActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView;
         CustomAdapter customAdapter;
         ImageView locationImage;
+        TextView userName;
+        String user_Name,user_id;
+
         private ArrayList<ProductModel> productModelList;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,20 @@ public class ProductPageActivity extends AppCompatActivity {
         System.out.println("called the product page");
         bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setSelectedItemId(R.id.home);
+        userName = findViewById(R.id.UserLoginName);
+            if(getIntent().hasExtra("email")) {
+                user_Name = getIntent().getStringExtra("email");
+                user_Name = databaseHelper.userName(user_Name);
+                user_id = databaseHelper.userID();
+                //System.out.println(user_id+ "   - this is the id for the user ********");
+                userName.setText( "Logged in as: "+ user_Name);
+            }else if(getIntent().hasExtra("UserName")){
+                user_Name = getIntent().getStringExtra("UserName");
+                userName.setText( "Logged in as: "+ user_Name);
+            }
+            else {
+                userName.setText("No user detected");
+            }
         bottomNavSelection();
         locationImage = findViewById(R.id.imageButton2);
 
@@ -59,12 +79,19 @@ public class ProductPageActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu,menu);
         return true;
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            recreate();
+        }
+    }
 
     //  calls CustomAdaptor java file
     public  void  callCustomAdaptor(){
         productModelList = databaseHelper.get_all_products();
         RecyclerView recyclerView = findViewById(R.id.products_recycleView);
-        customAdapter = new CustomAdapter(ProductPageActivity.this, productModelList);
+        customAdapter = new CustomAdapter(ProductPageActivity.this,this, productModelList);
         recyclerView.setAdapter(customAdapter);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
@@ -76,7 +103,9 @@ public class ProductPageActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.user:
-                        startActivity(new Intent(ProductPageActivity.this, UserActivity.class));
+                        Intent intent = new Intent(ProductPageActivity.this, UserActivity.class);
+                        intent.putExtra("UserName",user_Name);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
 
@@ -84,11 +113,13 @@ public class ProductPageActivity extends AppCompatActivity {
                         return  true;
 
                     case R.id.bookmark:
-                        startActivity(new Intent(ProductPageActivity.this, AddProductActivity.class));
+                        Intent intent1 = new Intent(ProductPageActivity.this, AddProductActivity.class);
+                        intent1.putExtra("UserName",user_Name);
+                        intent1.putExtra("UserId", user_id);
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                 }
-
                 return false;
             }
         });
