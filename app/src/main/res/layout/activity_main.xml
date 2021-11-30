@@ -4,39 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_teal"
     tools:context=".Activities.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/teal_700"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:logo="@drawable/ic_menu_pick"
-        app:title="iMarket"
-        app:titleMarginStart="40dp"
-
-        />
-    <ImageView
-        android:id="@+id/imageIMarket"
-        android:layout_width="360dp"
-        android:layout_height="240dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:src="@mipmap/ic_banner_foreground"
-        />
-
-    <Button
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonStart"
-        android:text="Enter Market"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/imageIMarket"
+        android:layout_marginTop="100dp"
+        android:elevation="10dp"
+        app:cardBackgroundColor="@color/teal_700"
+        app:cardCornerRadius="50dp">
+
+        <ImageView
+            android:id="@+id/imageIMarket"
+            android:layout_width="360dp"
+            android:layout_height="240dp"
+            android:src="@mipmap/ic_banner_foreground" />
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardView"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:backgroundTint="@color/teal_200"
+        android:backgroundTint="@color/teal_700"
         android:onClick="startMarket"
-        />
+        android:text="Enter Market" />
 
 
 </RelativeLayout>

@@ -182,17 +182,17 @@
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="wrap_content"
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:visibility="visible"
+        android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             app:itemBackground="@color/teal_700"
             app:itemIconTint="@drawable/selector"

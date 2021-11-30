@@ -78,7 +78,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
                 print_user_list(user_list);
                 System.out.println("User registered successfully");
                 Toast.makeText(UserRegistrationActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-                startUserAuthenticationActivity();
+                startUserAuthenticationActivity(v);
             }
         }else{
             Toast.makeText(getApplicationContext(), "Could not register user", Toast.LENGTH_SHORT).show();
@@ -123,7 +123,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
     }
 
     //Method to move to the login page
-    public void startUserAuthenticationActivity() {
+    public void startUserAuthenticationActivity(View v) {
         System.out.println("Opening Login Page...");
         // Create the intent for the new activity and start the activity
         Intent i = new Intent(this, UserAuthenticationActivity.class);

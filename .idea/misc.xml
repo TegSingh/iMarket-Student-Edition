@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/Group/iMarket/iMarket-Student-Edition/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.3640625" />
         <entry key="..\:/Projects/Group/iMarket/iMarket-Student-Edition/app/src/main/res/layout/activity_add_product.xml" value="0.3333333333333333" />
+        <entry key="..\:/Projects/Group/iMarket/iMarket-Student-Edition/app/src/main/res/layout/activity_main.xml" value="0.3515625" />
+        <entry key="..\:/Projects/Group/iMarket/iMarket-Student-Edition/app/src/main/res/layout/activity_main2.xml" value="0.3515625" />
+        <entry key="..\:/Projects/Group/iMarket/iMarket-Student-Edition/app/src/main/res/layout/activity_maps.xml" value="0.3333333333333333" />
         <entry key="..\:/Projects/Group/iMarket/iMarket-Student-Edition/app/src/main/res/layout/activity_product_page.xml" value="0.3333333333333333" />
         <entry key="..\:/Projects/Group/iMarket/iMarket-Student-Edition/app/src/main/res/layout/activity_user.xml" value="0.3333333333333333" />
-        <entry key="..\:/Projects/Group/iMarket/iMarket-Student-Edition/app/src/main/res/layout/activity_user_authentication.xml" value="0.34791666666666665" />
+        <entry key="..\:/Projects/Group/iMarket/iMarket-Student-Edition/app/src/main/res/layout/activity_user_authentication.xml" value="0.4466666666666667" />
         <entry key="..\:/Projects/Group/iMarket/iMarket-Student-Edition/app/src/main/res/layout/activity_user_registration.xml" value="0.34791666666666665" />
         <entry key="..\:/Projects/Group/iMarket/iMarket-Student-Edition/app/src/main/res/layout/fragment_home_page.xml" value="0.17097264437689969" />
         <entry key="..\:/Projects/Group/iMarket/iMarket-Student-Edition/app/src/main/res/layout/fragment_profile_page.xml" value="0.11851851851851852" />
@@ -17,10 +21,6 @@
         <entry key="..\:/Users/tegve/AndroidStudioProjects/iMarket-Student-Edition/app/src/main/res/layout/fragment_home_page.xml" value="0.1875" />
         <entry key="..\:/Users/tegve/AndroidStudioProjects/iMarket-Student-Edition/app/src/main/res/layout/fragment_profile_page.xml" value="0.1875" />
         <entry key="..\:/Users/tegve/AndroidStudioProjects/iMarket-Student-Edition/app/src/main/res/layout/fragment_saved_paged.xml" value="0.1875" />
-        <entry key="app/src/main/res/layout/activity_add_product.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18568840579710144" />
-        <entry key="app/src/main/res/layout/activity_product_page.xml" value="0.45" />
-        <entry key="app/src/main/res/layout/product_recycle_view.xml" value="0.17395833333333333" />
       </map>
     </option>
   </component>
