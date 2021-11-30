@@ -17,23 +17,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
     }
 
     // Button event listener to start the application
     public void startMarket(View v) {
         System.out.println("Button to the start application clicked. Moving to Login page");
         // Create intent to move to login activity and start activity
-        //Intent start_application_intent = new Intent(this, UserAuthenticationActivity.class);
-        Intent start_application_intent = new Intent(this, AddProductActivity.class);
+        Intent start_application_intent = new Intent(this, UserAuthenticationActivity.class);
+        //Intent start_application_intent = new Intent(this, AddProductActivity.class);
         startActivity(start_application_intent);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu,menu);
-        return true;
     }
 }

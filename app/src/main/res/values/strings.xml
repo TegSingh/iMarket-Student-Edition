@@ -31,5 +31,17 @@
     <string name="backimagebutton">BackImageButton</string>
     <string name="available_products">Available Products</string>
     <string name="todo">TODO</string>
+    <string name="login">Login</string>
+    <string name="new_to_iMarket">New to iMarket? Register here.</string>
+    <string name="PASSWORD">PASSWORD</string>
+    <string name="EMAIL">EMAIL</string>
+    <string name="password_hint">********</string>
+    <string name="email_hint">hello@welcome.com</string>
+    <string name="open_new_link">open_new_link</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="NAME">NAME</string>
+    <string name="name_hint">John Smith</string>
+    <string name="already_registered">Already Registered? Log in here.</string>
+    <string name="register">register</string>
 
 </resources>

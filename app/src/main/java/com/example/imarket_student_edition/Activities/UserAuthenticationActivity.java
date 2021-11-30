@@ -69,4 +69,12 @@ public class UserAuthenticationActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    //Method to move to the login page
+    public void startUserAuthenticationActivity() {
+        System.out.println("Opening Login Page...");
+        // Create the intent for the new activity and start the activity
+        Intent i = new Intent(this, UserAuthenticationActivity.class);
+        startActivity(i);
+    }
+
 }
