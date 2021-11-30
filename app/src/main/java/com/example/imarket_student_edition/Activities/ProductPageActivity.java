@@ -51,7 +51,11 @@ public class ProductPageActivity extends AppCompatActivity {
                 user_id = databaseHelper.userID();
                 //System.out.println(user_id+ "   - this is the id for the user ********");
                 userName.setText( "Logged in as: "+ user_Name);
-            }else {
+            }else if(getIntent().hasExtra("UserName")){
+                user_Name = getIntent().getStringExtra("UserName");
+                userName.setText( "Logged in as: "+ user_Name);
+            }
+            else {
                 userName.setText("No user detected");
             }
         bottomNavSelection();

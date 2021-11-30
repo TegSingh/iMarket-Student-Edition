@@ -252,13 +252,13 @@ public class MyDatabase  extends SQLiteOpenHelper {
 
         // Content values to be used as update argument
         ContentValues cv = new ContentValues();
-        cv.put("id", product_updated.getId());
+        //cv.put("id", product_updated.getId());
         cv.put("name", product_updated.getName());
         cv.put("image_video", product_updated.getImg_video_url());
         cv.put("description", product_updated.getDescription());
-        cv.put("date_added", product_updated.getDate_added());
+        //cv.put("date_added", product_updated.getDate_added());
         cv.put("price", product_updated.getPrice());
-        cv.put("user_id", product_updated.getUser_id());
+        //cv.put("user_id", product_updated.getUser_id());
 
         String whereClause = "id = ?";
         Integer id = new Integer(product_updated.getId());

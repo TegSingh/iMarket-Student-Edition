@@ -63,16 +63,19 @@ public class AddProductActivity extends AppCompatActivity {
         productName = findViewById(R.id.ProductName);
         productPrice = findViewById(R.id.ProductPrice);
         productCondition = findViewById(R.id.ProductCondition);
-        productUserName = findViewById(R.id.ProductUserName);
+        productUserName = findViewById(R.id.UpdatePage_userName);
         productUserNumber = findViewById(R.id.ProductUserNumber);
         image_selection = findViewById(R.id.Select_image);
-        imageDestination = findViewById(R.id.update_img);
+        imageDestination = findViewById(R.id.add_product_image);
         if(getIntent().hasExtra("UserName")) {
             System.out.println("Inside the userName intent on Add product");
             productUserNameInput = getIntent().getStringExtra("UserName");
             productUserName.setText(String.valueOf(productUserNameInput));
+            //user_id = Integer.parseInt(getIntent().getStringExtra("UserId"));
+        }else if(getIntent().hasExtra("UserId")){
             user_id = Integer.parseInt(getIntent().getStringExtra("UserId"));
-        }else {
+        }
+        else {
             productUserName.setText("No user detected");
         }
 
@@ -258,13 +261,19 @@ public class AddProductActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.user:
-                        startActivity(new Intent(AddProductActivity.this, UserActivity.class));
+                        Intent intent = new Intent(AddProductActivity.this, UserActivity.class);
+                        intent.putExtra("UserName", productUserNameInput);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
+
                     case R.id.home:
-                        startActivity(new Intent(AddProductActivity.this, ProductPageActivity.class));
+                        Intent intent3 = new Intent(AddProductActivity.this, ProductPageActivity.class);
+                        intent3.putExtra("UserName",productUserNameInput);
+                        startActivity(intent3);
                         overridePendingTransition(0,0);
                         return  true;
+
                     case R.id.bookmark:
                         return true;
                 }
