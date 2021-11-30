@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class MyDatabase  extends SQLiteOpenHelper {
 
     private Context context;
+    public String user_name, user_id;
 
     // Create constants and database parameters
     private static final String DATABASE_NAME = "iMarket.db";
@@ -113,6 +114,46 @@ public class MyDatabase  extends SQLiteOpenHelper {
             return false;
         }
     }
+
+
+    //Method to get use ID and Name
+    public String userName(String email) {
+       // System.out.println("Authenticate User method called from database helper");
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + User_Table + " WHERE " + User_Column_Email + "=\'" + email + "\'";
+        Cursor cursor = db.rawQuery(query, null);
+
+        // Get the number of users with the given email and password
+        int number_of_users = cursor.getCount();
+        System.out.println("Number of Users fetched: " + number_of_users);
+
+        if (number_of_users == 1) {
+            cursor.moveToFirst();
+            // Get user name which is the second column
+            user_name = cursor.getString(1);
+            user_id = cursor.getString(0);
+            System.out.println("User found: Name: for product page " + user_name);
+            // Close the cursor and database object
+            cursor.close();
+            db.close();
+            return user_name;
+
+        } else if (number_of_users == 0) {
+            System.out.println("Database Helper: User email not found");
+            return null;
+        } else {
+            // THE CODE SHOULD NOT REACH THIS ELSE STATEMENT AFTER CORRECT EMAIL VALIDATION IN REGISTRATION
+            return null;
+        }
+    }
+    public String userID(){
+        if(user_name.length() != 0){
+            return user_id;
+        }
+        return null;
+    }
+
 
     // Method to get a list of all users
     public ArrayList<UserModel> get_all_users() {
