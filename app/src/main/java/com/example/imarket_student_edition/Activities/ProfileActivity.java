@@ -18,11 +18,13 @@ import com.example.imarket_student_edition.DatabaseHelper.MyDatabase;
 import com.example.imarket_student_edition.Models.ProductModel;
 import com.example.imarket_student_edition.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
     TextView uname;
+    FloatingActionButton update;
     EditText user_update_name, user_update_password, user_update_email, user_update_location;
     int user_id;
     CustomProfileAdapter customProfileAdapter;

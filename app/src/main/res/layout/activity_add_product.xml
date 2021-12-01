@@ -71,8 +71,9 @@
         android:layout_marginStart="38dp"
         android:layout_marginBottom="7dp"
         android:text="@string/number"
-        android:textColor="@color/black"
+        android:textColor="@color/teal_700"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/ProductUserNumber"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -97,8 +98,9 @@
         android:layout_marginStart="37dp"
         android:layout_marginBottom="7dp"
         android:text="@string/description"
-        android:textColor="@color/black"
+        android:textColor="@color/teal_700"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/ProductCondition"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -109,8 +111,9 @@
         android:layout_marginStart="14dp"
         android:layout_marginBottom="27dp"
         android:text="@string/contact_info"
-        android:textColor="@color/black"
+        android:textColor="@color/teal_700"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/UpdatePage_userName"
         app:layout_constraintStart_toStartOf="@+id/UpdatePage_userName" />
 
@@ -120,8 +123,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:text="@string/name"
-        android:textColor="@color/black"
+        android:textColor="@color/teal_700"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/UpdatePage_userName"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -132,8 +136,9 @@
         android:layout_marginStart="37dp"
         android:layout_marginBottom="28dp"
         android:text="@string/name"
-        android:textColor="@color/black"
+        android:textColor="@color/teal_700"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ProductPrice"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -144,8 +149,9 @@
         android:layout_marginStart="37dp"
         android:layout_marginBottom="8dp"
         android:text="@string/price"
-        android:textColor="@color/black"
+        android:textColor="@color/teal_700"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/ProductPrice"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -156,8 +162,9 @@
         android:layout_marginStart="21dp"
         android:layout_marginBottom="24dp"
         android:text="@string/product_info"
-        android:textColor="@color/black"
+        android:textColor="@color/teal_700"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ProductName"
         app:layout_constraintStart_toStartOf="@+id/ProductName" />
 
@@ -167,8 +174,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/add_product"
-        android:textColor="@color/black"
+        android:textColor="@color/teal_700"
         android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/product_image"
         app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="@+id/product_image"
@@ -187,7 +195,7 @@
         tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/up_button"
+        android:id="@+id/s_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"

@@ -27,8 +27,6 @@ import com.example.imarket_student_edition.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -62,7 +60,7 @@ public class AddProductActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.addPost);
         bottomNavSelection();
 
-        saveProductButton = findViewById(R.id.up_button);
+        saveProductButton = findViewById(R.id.s_button);
         productName = findViewById(R.id.ProductName);
         productPrice = findViewById(R.id.ProductPrice);
         productCondition = findViewById(R.id.ProductCondition);
