@@ -75,6 +75,8 @@ public class UpdateProductActivity extends AppCompatActivity {
                 MyDatabase database = new MyDatabase(UpdateProductActivity.this);
                 database.DeleteProduct(String.valueOf(user_id));
                 finish();
+                Intent intent = new Intent(UpdateProductActivity.this, ProfileActivity.class);
+                startActivity(intent);
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

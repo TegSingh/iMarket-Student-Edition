@@ -339,7 +339,7 @@ public class MyDatabase extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
 
         // Add values into the content values structure
-        cv.put(User_Column_ID, user.getId());
+        //cv.put(User_Column_ID, user.getId());
         cv.put(User_Column_Name, user.getName());
         cv.put(User_Column_Email, user.getEmail());
         cv.put(User_Column_Password, user.getPassword());
@@ -382,7 +382,7 @@ public class MyDatabase extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
 
         // Add values into the content values structure
-        cv.put(Product_Column_ID,  product.getId());
+       // cv.put(Product_Column_ID,  product.getId());
         cv.put(Product_Column_Name, product.getName());
         cv.put(Product_Column_Image_video, product.getImg_video_url());
         cv.put(Product_Column_Description, product.getDescription());
