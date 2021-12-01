@@ -1,13 +1,16 @@
 package com.example.imarket_student_edition.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -23,6 +26,7 @@ public class UpdateProductActivity extends AppCompatActivity {
     String  imagePath = "No Image";
     FloatingActionButton UpdateProductButton, delProductButton;
     ImageView updateImage;
+    int user_id;
     BottomNavigationView bottomNavigationView;
     MyDatabase database_helper = new MyDatabase(UpdateProductActivity.this);
     @Override
@@ -32,13 +36,54 @@ public class UpdateProductActivity extends AppCompatActivity {
         productName = findViewById(R.id.p_name_update);
         productCondition = findViewById(R.id.p_condition_update);
         productPrice = findViewById(R.id.p_price_update);
+
         UpdateProductButton = findViewById(R.id.up_button);
         delProductButton = findViewById(R.id.del_button);
+
         updateImage = findViewById(R.id.update_img);
         bottomNavigationView = findViewById(R.id.bottom_nav);
         update_page_user_name = findViewById(R.id.UpdatePage_userName1);
         getIntentData();
         bottomNavSelection();
+
+        UpdateProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                productNameInput =  productName.getText().toString().trim();
+                productPriceInput = productPrice.getText().toString().trim();
+                productConditionInput= productCondition.getText().toString().trim();
+                database_helper.updateProduct(String.valueOf(user_id),productNameInput, productConditionInput,productPriceInput);
+                Intent intent = new Intent(UpdateProductActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        delProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmDelete();
+            }
+        });
+    }
+
+    void confirmDelete(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete \"" + productNameInput + " \" ?");
+        builder.setMessage(" Are you you sure you wish to delete \"" + productNameInput + " \" ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MyDatabase database = new MyDatabase(UpdateProductActivity.this);
+                database.DeleteProduct(String.valueOf(user_id));
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create().show();
     }
 
     public void getIntentData() {
@@ -70,7 +115,7 @@ public class UpdateProductActivity extends AppCompatActivity {
             cursor.moveToFirst();
             update_page_user_name.setText(cursor.getString(1));
             // IF WE NEED TO USE USER ID JUST UNCOMMENT THE STATEMENT AND SET IT TO A VAIRABLE
-            //user_id = Integer.parseInt(cursor.getString(2));
+            user_id = Integer.parseInt(cursor.getString(2));
         }
     }
 

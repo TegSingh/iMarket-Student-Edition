@@ -21,13 +21,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class ProductActivity extends AppCompatActivity {
 
     private Cursor cursor;
-    private MyDatabase db_helper;
     private ImageView p_image;
     private ImageButton imageButton;
     private BottomNavigationView bottomNavigationView;
     private TextView p_name, p_price, p_description, c_name, c_number;
     private String pdbName, pdbPrice, pdbDescription, pdbImage, cdbNumber, userID;
     public String uname;
+    MyDatabase db_helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +68,20 @@ public class ProductActivity extends AppCompatActivity {
             pdbDescription= getIntent().getStringExtra("condition");
             pdbImage = getIntent().getStringExtra("image");
             userID = getIntent().getStringExtra("uid");
+
             cdbNumber = getIntent().getStringExtra("unumber");
+
+
+           // System.out.println("++***+*+*****++++++" + userID);
 
             // store the string
             p_name.setText(pdbName);
             p_description.setText(pdbDescription);
             p_price.setText(pdbPrice);
             p_image.setImageBitmap(BitmapFactory.decodeFile(String.valueOf(pdbImage)));
+
             c_number.setText(cdbNumber);
+
             getContactData();
 
         }else {
@@ -93,6 +99,7 @@ public class ProductActivity extends AppCompatActivity {
             c_name.setText(cursor.getString(1));
         }
     }
+
 
     public void bottomNavSelection() {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -124,4 +131,5 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
     }
+
 }

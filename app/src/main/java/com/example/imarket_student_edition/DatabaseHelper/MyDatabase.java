@@ -268,6 +268,37 @@ public class MyDatabase extends SQLiteOpenHelper {
             return false;
         }
     }
+    // Method  to update a user in the product table
+
+    public void updateProduct(String id, String product_name, String condition, String price){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Product_Column_Name , product_name);
+        contentValues.put(Product_Column_Description , condition);
+        contentValues.put(Product_Column_Price , price);
+
+        long result = db.update (Product_Table, contentValues , Product_Column_ID +"=?", new String[] {id} );
+
+        if(result == -1){
+            Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
+        }else {
+            System.out.println(" the result is :"+ result);
+            Toast.makeText(context, "Updated Successfully", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // METHOD TO DELETE PRODUCTS
+
+    public void DeleteProduct(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete (Product_Table, Product_Column_ID +"=?", new String[] {id} );
+        if(result == -1){
+            Toast.makeText(context, "Failed to Delete", Toast.LENGTH_SHORT).show();
+        }else {
+            System.out.println(" the result is :"+ result);
+            Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     // Method  to update a user in the product table
     public boolean update_product(ProductModel product, ProductModel product_updated) {
