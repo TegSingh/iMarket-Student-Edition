@@ -11,9 +11,10 @@ import com.example.imarket_student_edition.Models.UserModel;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
 
 
-public class MyDatabase  extends SQLiteOpenHelper {
+public class MyDatabase extends SQLiteOpenHelper {
 
     private Context context;
 
@@ -39,7 +40,7 @@ public class MyDatabase  extends SQLiteOpenHelper {
     private static final String Product_Column_DateAdded = "DateAdded";
     private static final String Product_Column_Price = "Price";
     private static final String Product_Column_UserID = "UserID";
-    private static final String Product_Column_UserPhoneNumber = "UserID";
+    private static final String Product_Column_UserPhoneNumber = "UserNumber";
 
     private static final String NewUserTable = "NewUserTable";
     private static final String NewUserTableID = "NewUserTableID";
@@ -76,7 +77,8 @@ public class MyDatabase  extends SQLiteOpenHelper {
                 Product_Column_Description + " TEXT," +
                 Product_Column_DateAdded + " DATE," +
                 Product_Column_Price + " Text," +
-                Product_Column_UserID + " INTEGER);";
+                Product_Column_UserID + " INTEGER," +
+                Product_Column_UserPhoneNumber +" TEXT);";
 
         db.execSQL(query2);
 
@@ -226,8 +228,9 @@ public class MyDatabase  extends SQLiteOpenHelper {
                 String date_created = cursor.getString(4);
                 String price = cursor.getString(5);
                 int user_id = cursor.getInt(6);
+                String phone_number = cursor.getString(7);
 
-                ProductModel product = new ProductModel(id, name, image_video, description, date_created, price, user_id);
+                ProductModel product = new ProductModel(id, name, image_video, description, date_created, price, user_id,phone_number);
                 System.out.println("Product: " + product.toString());
                 products.add(product);
             } while (cursor.moveToNext());
@@ -355,6 +358,7 @@ public class MyDatabase  extends SQLiteOpenHelper {
         cv.put(Product_Column_DateAdded, product.getDate_added());
         cv.put(Product_Column_Price, product.getPrice());
         cv.put(Product_Column_UserID, product.getUser_id());
+        cv.put(Product_Column_UserPhoneNumber, product.getPhone_number());
 
         // Add the content values to the database
         long result = db.insert(Product_Table, null, cv);
@@ -453,8 +457,9 @@ public class MyDatabase  extends SQLiteOpenHelper {
                 String description = cursor.getString(3);
                 String product_date_created = cursor.getString(4);
                 String price = cursor.getString(5);
+                String phone_number = cursor.getString(7);
                 int user_id = cursor.getInt(6);
-                filtered_products.add(new ProductModel(id, product_name, image_video, description, product_date_created, price, user_id));
+                filtered_products.add(new ProductModel(id, product_name, image_video, description, product_date_created, price, user_id, phone_number));
 
             } while (cursor.moveToNext());
         }

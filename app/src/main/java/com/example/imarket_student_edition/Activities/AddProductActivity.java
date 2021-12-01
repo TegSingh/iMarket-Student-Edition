@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.imarket_student_edition.DatabaseHelper.MyDatabase;
@@ -25,6 +26,8 @@ import com.example.imarket_student_edition.Models.ProductModel;
 import com.example.imarket_student_edition.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.InputStream;
@@ -35,7 +38,8 @@ public class AddProductActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     FloatingActionButton saveProductButton;
-    EditText productName,productPrice, productCondition,productUserName,productUserNumber;
+    EditText productName,productPrice, productCondition,productUserNumber;
+    TextView productUserName;
     String productNameInput,productPriceInput, productConditionInput,productUserNameInput,productUserNumberInput, date_Added;
     String  imagePath = "No Image";
     int product_id, user_id;
@@ -45,7 +49,6 @@ public class AddProductActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_STORAGE_PERMISSION = 1;
     private static final int REQUEST_CODE_SELECT_IMAGE = 2;
     private static final int CAMERA_REQUEST = 100;
-
 
     // Add my database helper
     MyDatabase database_helper = new MyDatabase(AddProductActivity.this);
@@ -76,7 +79,7 @@ public class AddProductActivity extends AppCompatActivity {
 
                 if(getProductData()) {
                     // Create a user model
-                    product = new ProductModel(product_id, productNameInput, imagePath, productConditionInput, date_Added, productPriceInput, user_id);
+                    product = new ProductModel(product_id, productNameInput, imagePath, productConditionInput, date_Added, productPriceInput, user_id, productUserNumberInput);
                     boolean result = database_helper.insert_product(product);
                     if (result) {
                         // Print the updated list

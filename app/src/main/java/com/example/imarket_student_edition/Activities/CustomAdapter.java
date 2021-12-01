@@ -93,6 +93,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                     intent.putExtra("image", productmodel.getImg_video_url());
                     //String temp = String.valueOf(productmodel.getUser_id());
                     intent.putExtra("uid", String.valueOf(productmodel.getUser_id()));
+                    intent.putExtra("unumber", productmodel.getPhone_number());
                     //context.startActivity(intent);
                     activity.startActivityForResult(intent, 1);
                 }
