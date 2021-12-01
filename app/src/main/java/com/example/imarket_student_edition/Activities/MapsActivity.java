@@ -3,6 +3,7 @@ package com.example.imarket_student_edition.Activities;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 
+import com.example.imarket_student_edition.DatabaseHelper.MyDatabase;
 import com.example.imarket_student_edition.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,6 +34,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ImageButton imgBtn;
     private SearchView searchView;
     private Marker marker;
+    private String locationCity, userId;
+    private MyDatabase databaseHelper = new MyDatabase(MapsActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        //initializing geocoder object
         geocoder = new Geocoder(this);
+
         imgBtn = findViewById(R.id.imageButton);
         searchView = findViewById(R.id.search);
 
@@ -54,23 +60,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onQueryTextSubmit(String s) {
                 System.out.println("User searched for a location");
+                //getting user query
                 String location = searchView.getQuery().toString();
                 try {
                     List<Address> addresses = geocoder.getFromLocationName(location,1);
-                    Address a = addresses.get(0);
+                    Address address = addresses.get(0);
                     //latlng values can be used to get address
-                    LatLng latLng = new LatLng(a.getLatitude(), a.getLongitude());
+                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                    //storing city name
+                    locationCity = address.getLocality();
                     // Removes old markers
                     if(marker != null) marker.remove();
                     // Add marker on searched location
-                    marker = mMap.addMarker(new MarkerOptions().position(latLng).title(a.getAddressLine(0)));
+                    marker = mMap.addMarker(new MarkerOptions().position(latLng).title(address.getAddressLine(0)));
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,13));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String s) {
                 return false;
@@ -81,8 +89,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Cursor cursor;
+//                cursor = databaseHelper.getData();
+//                cursor.moveToFirst();
+//                userId = cursor.getString(2);
+//                databaseHelper.insert_location(locationCity,userId);
                 // Create the intent for the new activity and start the activity
                 Intent i = new Intent(MapsActivity.this, HomeActivity.class);
+                i.putExtra("Location",locationCity);
                 startActivity(i);
             }
         });
