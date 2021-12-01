@@ -20,31 +20,31 @@ import com.example.imarket_student_edition.R;
 
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
+public class CustomProfileAdapter extends RecyclerView.Adapter<CustomProfileAdapter.MyViewHolder> {
     Context context;
     private List<ProductModel> productModelList;
     private List<ProductModel> productModeSource;
     Activity activity;
 
-    CustomAdapter(Activity activity,Context context, List<ProductModel> productModelList){
-       this.context = context;
-       this.activity = activity;
-       this.productModelList = productModelList;
-       productModeSource = productModelList;
+    CustomProfileAdapter(Activity activity, Context context, List<ProductModel> productModelList){
+        this.context = context;
+        this.activity = activity;
+        this.productModelList = productModelList;
+        productModeSource = productModelList;
     }
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         System.out.println("Called onCreateViewHolder");
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view =  inflater.inflate(R.layout.product_recycle_view, parent,false);
+        View view =  inflater.inflate(R.layout.profile_recycle_view, parent,false);
         return new MyViewHolder(view);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            holder.setProduct(productModelList.get(position));
+        holder.setProduct(productModelList.get(position));
 
     }
 
@@ -86,15 +86,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             CardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, ProductActivity.class);
+                    Intent intent = new Intent(context, UpdateProductActivity.class);
                     intent.putExtra("name", productmodel.getName());
                     intent.putExtra("price",productmodel.getPrice() );
                     intent.putExtra("condition",productmodel.getDescription());
                     intent.putExtra("image", productmodel.getImg_video_url());
 
                     intent.putExtra("uid", String.valueOf(productmodel.getUser_id()));
-                    intent.putExtra("unumber", productmodel.getPhone_number());
-                    //context.startActivity(intent);
+                    context.startActivity(intent);
                     activity.startActivityForResult(intent, 1);
                 }
             });

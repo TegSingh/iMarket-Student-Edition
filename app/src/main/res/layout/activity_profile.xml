@@ -7,7 +7,7 @@
     tools:context=".Activities.ProfileActivity">
 
     <EditText
-        android:id="@id/editTextTextPersonName9"
+        android:id="@id/p_user_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="235dp"
@@ -15,7 +15,7 @@
         android:inputType="textEmailAddress"
         android:hint="@string/_123_example_com"
         android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName8"
+        app:layout_constraintStart_toStartOf="@+id/p_user_password"
         app:layout_constraintTop_toTopOf="parent"
         android:importantForAutofill="no" />
 
@@ -26,8 +26,8 @@
         android:layout_marginTop="39dp"
         android:layout_marginEnd="18dp"
         android:text="@string/location"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName10"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9" />
+        app:layout_constraintEnd_toStartOf="@+id/p_user_location"
+        app:layout_constraintTop_toBottomOf="@+id/p_user_email" />
 
     <TextView
         android:id="@+id/textView21"
@@ -36,8 +36,8 @@
         android:layout_marginEnd="38dp"
         android:layout_marginBottom="8dp"
         android:text="@string/email"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName9"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName9" />
+        app:layout_constraintBottom_toBottomOf="@+id/p_user_email"
+        app:layout_constraintEnd_toStartOf="@+id/p_user_email" />
 
     <TextView
         android:id="@+id/textView19"
@@ -56,11 +56,11 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="25dp"
         android:text="@string/password"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName9"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName8" />
+        app:layout_constraintBottom_toTopOf="@+id/p_user_email"
+        app:layout_constraintEnd_toStartOf="@+id/p_user_password" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName10"
+        android:id="@+id/p_user_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -68,7 +68,7 @@
         android:hint="@string/current_location"
         android:minHeight="48dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView22"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName9"
+        app:layout_constraintStart_toStartOf="@+id/p_user_email"
         android:importantForAutofill="no" />
 
     <EditText
@@ -82,15 +82,15 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName8"
+        app:layout_constraintBottom_toTopOf="@+id/p_user_password"
         app:layout_constraintStart_toStartOf="@+id/u_name" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName8"
+        android:id="@+id/p_user_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:hint="@string/at_least_8_char"
         android:minHeight="48dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView20"
@@ -119,7 +119,7 @@
         app:layout_constraintStart_toEndOf="@+id/textView10" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/p_recycleview"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginStart="40dp"
@@ -128,7 +128,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName10" />
+        app:layout_constraintTop_toBottomOf="@+id/p_user_location" />
 
     <TextView
         android:id="@+id/textView23"
@@ -137,8 +137,8 @@
         android:layout_marginStart="14dp"
         android:layout_marginBottom="25dp"
         android:text="@string/your_products"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName10" />
+        app:layout_constraintBottom_toTopOf="@+id/p_recycleview"
+        app:layout_constraintStart_toStartOf="@+id/p_user_location" />
 
     <Button
         android:id="@+id/up_button"
@@ -149,7 +149,7 @@
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/p_recycleview" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"

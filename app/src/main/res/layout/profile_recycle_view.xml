@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ProductRecPage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@null"
+    android:elevation="4dp"
+    app:cardCornerRadius="15dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_700"
+        android:backgroundTint="@null">
+
+        <ImageView
+            android:id="@+id/product_image_rec"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:elevation="5dp"
+            android:fadingEdge="horizontal"
+            app:srcCompat="@drawable/ic_image" />
+
+        <TextView
+            android:id="@+id/ProductName_rec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/product_image_rec"
+            android:text="ProductName"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/ProductPrice_rec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ProductName_rec"
+            android:layout_toRightOf="@id/product_image_rec"
+            android:text="Price"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
