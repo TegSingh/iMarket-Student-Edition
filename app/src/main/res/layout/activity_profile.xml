@@ -6,156 +6,192 @@
     android:layout_height="match_parent"
     tools:context=".Activities.ProfileActivity">
 
-    <EditText
-        android:id="@id/p_user_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="235dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="@string/_123_example_com"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="@+id/p_user_password"
-        app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="18dp"
-        android:text="@string/location"
-        app:layout_constraintEnd_toStartOf="@+id/p_user_location"
-        app:layout_constraintTop_toBottomOf="@+id/p_user_email" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="38dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/email"
-        app:layout_constraintBottom_toBottomOf="@+id/p_user_email"
-        app:layout_constraintEnd_toStartOf="@+id/p_user_email" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/name"
-        app:layout_constraintBottom_toBottomOf="@+id/puser_name"
-        app:layout_constraintEnd_toStartOf="@+id/puser_name" />
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="25dp"
-        android:text="@string/password"
-        app:layout_constraintBottom_toTopOf="@+id/p_user_email"
-        app:layout_constraintEnd_toStartOf="@+id/p_user_password" />
-
-    <EditText
-        android:id="@+id/p_user_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/current_location"
-        android:minHeight="48dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView22"
-        app:layout_constraintStart_toStartOf="@+id/p_user_email"
-        android:importantForAutofill="no" />
-
-    <EditText
-        android:id="@+id/puser_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginBottom="18dp"
-        android:ems="10"
-        android:hint="@string/full_name"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/p_user_password"
-        app:layout_constraintStart_toStartOf="@+id/u_name" />
-
-    <EditText
-        android:id="@+id/p_user_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/at_least_8_char"
-        android:minHeight="48dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView20"
-        app:layout_constraintStart_toStartOf="@+id/puser_name"
-        android:importantForAutofill="no" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="71dp"
-        android:text="@string/hi"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/u_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/u_name" />
-
-    <TextView
-        android:id="@+id/u_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="35dp"
-        android:text="@string/user_name"
-        app:layout_constraintBottom_toTopOf="@+id/puser_name"
-        app:layout_constraintStart_toEndOf="@+id/textView10" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/p_recycleview"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="230dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="79dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="78dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/p_user_location" />
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="19dp"
         android:text="@string/your_products"
-        app:layout_constraintBottom_toTopOf="@+id/p_recycleview"
-        app:layout_constraintStart_toStartOf="@+id/p_user_location" />
+        android:textColor="@color/teal_700"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/p_user_location" />
 
-    <Button
+    <EditText
+        android:id="@+id/puser_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:ems="10"
+        android:hint="@string/full_name"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/p_user_password"
+        app:layout_constraintTop_toTopOf="@+id/up_button"
+        tools:ignore="TextContrastCheck,TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/p_user_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:hint="@string/at_least_8_char"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/textView20"
+        app:layout_constraintTop_toBottomOf="@+id/puser_name"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:text="@string/password"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/p_user_password"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="82dp"
+        android:layout_marginBottom="82dp"
+        android:text="@string/name"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/p_user_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="7dp"
+        android:text="@string/location"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/p_user_location"
+        app:layout_constraintEnd_toStartOf="@+id/p_user_location" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="39dp"
+        android:text="@string/email"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <EditText
+        android:id="@id/p_user_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="@string/_123_example_com"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/p_user_password"
+        app:layout_constraintTop_toBottomOf="@+id/p_user_password"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/p_user_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:ems="10"
+        android:hint="@string/current_location"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/p_user_email"
+        app:layout_constraintTop_toBottomOf="@+id/p_user_email"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/u_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/user_name"
+        android:textColor="@color/teal_700"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:text="@string/hi"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/u_name"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/up_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/update"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/image_desc"
+        android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/p_recycleview" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_check_circle_24"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
+        android:animateLayoutChanges="false"
+        android:gravity="fill_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -170,5 +206,6 @@
             app:menu="@menu/bottom_nav_bar" />
 
     </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

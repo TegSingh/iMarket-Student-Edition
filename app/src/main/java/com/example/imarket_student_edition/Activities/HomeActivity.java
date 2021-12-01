@@ -66,6 +66,14 @@ public class HomeActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu,menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent = new Intent(HomeActivity.this,UserAuthenticationActivity.class);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

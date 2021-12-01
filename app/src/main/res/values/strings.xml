@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">iMarket-Student-Edition</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="search">search</string>
+    <string name="logout">search</string>
     <string name="location">Location: </string>
     <string name="_123_example_com">123@example.com</string>
     <string name="email">Email: </string>
@@ -19,7 +19,7 @@
     <string name="seller_phone">seller phone</string>
     <string name="add_product">Add Product</string>
     <string name="contact_info">Contact Info</string>
-    <string name="product_info">Production Info</string>
+    <string name="product_info">Product Info</string>
     <string name="price">Price:</string>
     <string name="condition_hint">condition</string>
     <string name="product_name">product name</string>

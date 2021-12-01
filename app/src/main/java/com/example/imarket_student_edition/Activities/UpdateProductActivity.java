@@ -80,7 +80,6 @@ public class UpdateProductActivity extends AppCompatActivity {
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
             }
         });
         builder.create().show();
@@ -92,13 +91,13 @@ public class UpdateProductActivity extends AppCompatActivity {
             productPriceInput = getIntent().getStringExtra("price");
             productConditionInput= getIntent().getStringExtra("condition");
             imagePath = getIntent().getStringExtra("image");
+            user_id = Integer.parseInt(getIntent().getStringExtra("uid"));
             // store the string
             productName.setText(productNameInput);
             productCondition.setText(productConditionInput);
             productPrice.setText(productPriceInput);
             updateImage.setImageBitmap(BitmapFactory.decodeFile(String.valueOf(imagePath)));
             get_current_user_info();
-
 
         }else {
             Toast.makeText(UpdateProductActivity.this, "No data.", Toast.LENGTH_SHORT).show();
@@ -114,8 +113,8 @@ public class UpdateProductActivity extends AppCompatActivity {
         }else if(cursor.getCount() >0){
             cursor.moveToFirst();
             update_page_user_name.setText(cursor.getString(1));
-            // IF WE NEED TO USE USER ID JUST UNCOMMENT THE STATEMENT AND SET IT TO A VAIRABLE
-            user_id = Integer.parseInt(cursor.getString(2));
+            // IF WE NEED TO USE USER ID JUST UNCOMMENT THE STATEMENT AND SET IT TO A VARIABLE
+            //user_id = Integer.parseInt(cursor.getString(2));
         }
     }
 
