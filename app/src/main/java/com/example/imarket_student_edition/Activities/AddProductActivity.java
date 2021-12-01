@@ -66,7 +66,7 @@ public class AddProductActivity extends AppCompatActivity {
         productUserName = findViewById(R.id.UpdatePage_userName);
         productUserNumber = findViewById(R.id.ProductUserNumber);
         image_selection = findViewById(R.id.Select_image);
-        imageDestination = findViewById(R.id.add_product_image);
+        imageDestination = findViewById(R.id.product_image);
 
         get_current_user_info();
 
@@ -111,6 +111,7 @@ public class AddProductActivity extends AppCompatActivity {
         });
 
     }
+
     public void get_current_user_info(){
         Cursor cursor;
         cursor = database_helper.getData();

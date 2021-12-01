@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IMarketStudentEdition">
         <activity
+            android:name=".Activities.ProductActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activities.UpdateProductActivity"
             android:exported="true" />
         <!--

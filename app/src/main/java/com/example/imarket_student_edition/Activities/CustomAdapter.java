@@ -86,20 +86,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             CardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, UpdateProductActivity.class);
+                    Intent intent = new Intent(context, ProductActivity.class);
                     intent.putExtra("name", productmodel.getName());
                     intent.putExtra("price",productmodel.getPrice() );
                     intent.putExtra("condition",productmodel.getDescription());
                     intent.putExtra("image", productmodel.getImg_video_url());
+                    //String temp = String.valueOf(productmodel.getUser_id());
+                    intent.putExtra("uid", String.valueOf(productmodel.getUser_id()));
                     //context.startActivity(intent);
                     activity.startActivityForResult(intent, 1);
                 }
             });
-
-
-
         }
-
     }
 }
 

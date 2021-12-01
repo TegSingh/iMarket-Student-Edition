@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView;
         CustomAdapter customAdapter;
         ImageView locationImage;
-        TextView userName;
+        TextView userName, pick_location;
         String user_Name,user_id;
 
         private ArrayList<ProductModel> productModelList;
@@ -46,6 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setSelectedItemId(R.id.home);
         userName = findViewById(R.id.UserLoginName);
+        pick_location = findViewById(R.id.pickLocation);
         get_current_user_info();
         bottomNavSelection();
         locationImage = findViewById(R.id.imageButton2);
@@ -75,7 +76,16 @@ public class HomeActivity extends AppCompatActivity {
 
     //  calls CustomAdaptor java file
     public  void  callCustomAdaptor(){
-        productModelList = databaseHelper.get_all_products();
+        if(getIntent().hasExtra("Location")){
+            String location = getIntent().getStringExtra("Location");
+            System.out.println("*******" + location);
+            databaseHelper.insert_location(location,user_id);
+            productModelList = databaseHelper.search_products(Integer.parseInt(user_id));
+            pick_location.setText(location);
+
+        } else {
+            productModelList = databaseHelper.get_all_products();
+        }
         RecyclerView recyclerView = findViewById(R.id.products_recycleView);
         customAdapter = new CustomAdapter(HomeActivity.this,this, productModelList);
         recyclerView.setAdapter(customAdapter);
@@ -88,15 +98,13 @@ public class HomeActivity extends AppCompatActivity {
         if(cursor.getCount() == 0) {
             Toast.makeText(HomeActivity.this, "No data found in database!", Toast.LENGTH_SHORT).show();
 
-        }else if(cursor.getCount() >0){
+        } else if(cursor.getCount() > 0){
             cursor.moveToFirst();
             userName.setText( "Logged in as: "+ cursor.getString(1));
             user_id = cursor.getString(2);
             user_Name = cursor.getString(1);
             }
     }
-
-
 
     public void bottomNavSelection() {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

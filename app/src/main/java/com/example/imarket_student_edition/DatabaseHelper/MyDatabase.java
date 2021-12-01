@@ -160,7 +160,6 @@ public class MyDatabase  extends SQLiteOpenHelper {
                 //Toast.makeText(context, "Updated Successfully", Toast.LENGTH_SHORT).show();
             }
         }
-
     }
 
     public Cursor getData() {
@@ -171,6 +170,14 @@ public class MyDatabase  extends SQLiteOpenHelper {
             cursor = db.rawQuery(query, null);
         }
         return cursor;
+    }
+
+    public Cursor get_user_profile(int id){
+        Cursor cursor;
+        String query = "SELECT * FROM " + User_Table + " WHERE " + User_Column_ID + " Like " + "'" +id + "%'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        cursor = db.rawQuery(query, null);
+        return  cursor;
     }
 
     // Method to get a list of all users
@@ -318,6 +325,22 @@ public class MyDatabase  extends SQLiteOpenHelper {
         }
     }
 
+    public boolean insert_location(String location, String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(User_Column_Location, location);
+        long result = db.update(User_Table, cv , User_Column_ID +"=?", new String[] {id} );
+
+        if (result == -1) {
+            // Insert was unsuccessful
+            System.out.println("Location update not successful");
+        } else {
+            System.out.println("Location updated successfully");
+            return true;
+        }
+        return false;
+    }
+
     // Method to add Product to the table
     public boolean insert_product(ProductModel product) {
         System.out.println("Insert product method called from Database Helper");
@@ -411,13 +434,13 @@ public class MyDatabase  extends SQLiteOpenHelper {
         }
     }
 
-    // Method to search product by product name
-    public ArrayList<ProductModel> search_products(String name) {
+    // Method to search product by product user id
+    public ArrayList<ProductModel> search_products(int userId) {
     // Works
         System.out.println("Database helper: Method to search product called");
         ArrayList<ProductModel> filtered_products = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + Product_Table + " WHERE " + Product_Column_Name + " LIKE \'%" + name + "%\'";
+        String query = "SELECT * FROM " + Product_Table + " WHERE " + Product_Column_UserID + " LIKE \'%" + userId + "%\'";
         Cursor cursor = db.rawQuery(query, null);
         System.out.println("Number of products fetched: " + cursor.getCount());
 
