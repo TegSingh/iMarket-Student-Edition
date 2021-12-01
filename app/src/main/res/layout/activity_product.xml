@@ -4,79 +4,152 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.ProductActivity">
-
-    <TextView
-        android:id="@+id/contact_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="26dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/number"
-        app:layout_constraintTop_toBottomOf="@+id/contact_name" />
-
-    <TextView
-        android:id="@+id/contact_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="177dp"
-        android:layout_marginBottom="175dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/C_name"
-        app:layout_constraintTop_toTopOf="@+id/product_price" />
+    tools:context=".Activities.ProductActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="-10dp">
 
     <TextView
         android:id="@+id/P_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
         android:text="@string/name"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/product_name"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/product_image" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/product_description"
+        app:layout_constraintStart_toStartOf="@+id/price" />
+
+    <TextView
+        android:id="@+id/product_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="36dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/contactInfo"
+        app:layout_constraintStart_toEndOf="@+id/description" />
 
     <TextView
         android:id="@+id/contactInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="33dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/contact_info"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/contact_name"
         app:layout_constraintStart_toStartOf="@+id/contact_name" />
 
+    <TextView
+        android:id="@+id/C_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/contact_name"
+        app:layout_constraintEnd_toEndOf="@+id/P_name"
+        app:layout_constraintStart_toStartOf="@+id/description" />
+
+    <TextView
+        android:id="@+id/contact_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="21dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/number"
+        app:layout_constraintStart_toEndOf="@+id/C_name" />
+
+    <TextView
+        android:id="@+id/contact_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginBottom="33dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
+        app:layout_constraintStart_toEndOf="@+id/number" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/contact_number"
+        app:layout_constraintStart_toStartOf="@+id/C_name" />
+
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginBottom="28dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/product_price"
+        app:layout_constraintStart_toEndOf="@+id/P_name" />
+
+    <TextView
+        android:id="@+id/product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginBottom="28dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/description"
+        app:layout_constraintStart_toEndOf="@+id/price" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/product_price"
+        app:layout_constraintStart_toStartOf="@+id/P_name" />
+
     <ImageView
         android:id="@+id/product_image"
         android:layout_width="278dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="117dp"
-        android:layout_marginBottom="116dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="47dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_desc"
-        app:layout_constraintBottom_toBottomOf="@+id/price"
-        app:layout_constraintStart_toStartOf="@+id/product_page"
-        app:layout_constraintTop_toTopOf="@+id/imageButton3"
+        app:layout_constraintBottom_toBottomOf="@+id/P_name"
+        app:layout_constraintEnd_toEndOf="@+id/product_page"
+        app:layout_constraintStart_toEndOf="@+id/product_page"
+        app:layout_constraintTop_toTopOf="@+id/product_page"
         app:srcCompat="@drawable/ic_image" />
 
     <TextView
         android:id="@+id/product_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginTop="10dp"
         android:text="@string/product_page"
         android:textColor="@color/black"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/product_image"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/imageButton3"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -103,89 +176,13 @@
         android:id="@+id/imageButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/backimagebutton"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_arrow_back"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:contentDescription="@string/backimagebutton" />
-
-    <TextView
-        android:id="@+id/C_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:text="@string/name"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/contact_name"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/number"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/contact_number"
-        app:layout_constraintStart_toStartOf="@+id/C_name" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:text="@string/price"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/product_price"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:text="@string/description"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/product_description"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/product_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginBottom="33dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/product_price"
-        app:layout_constraintStart_toEndOf="@+id/P_name" />
-
-    <TextView
-        android:id="@+id/product_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="38dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toEndOf="@+id/description"
-        app:layout_constraintTop_toBottomOf="@+id/product_price" />
-
-    <TextView
-        android:id="@+id/product_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/price"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

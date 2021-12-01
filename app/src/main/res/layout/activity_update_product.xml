@@ -95,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="@string/production_info"
+        android:text="@string/product_info"
         app:layout_constraintBottom_toTopOf="@+id/p_name_update"
         app:layout_constraintStart_toStartOf="@+id/p_name_update" />
 
