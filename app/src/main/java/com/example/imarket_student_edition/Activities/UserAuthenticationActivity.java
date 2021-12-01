@@ -67,7 +67,7 @@ public class UserAuthenticationActivity extends AppCompatActivity {
     public void startProductPageActivity(String email) {
         System.out.println("Opening Product Page Activity...");
         // Create the intent for the new activity and start the activity
-        Intent i = new Intent(this, ProductPageActivity.class);
+        Intent i = new Intent(this, HomeActivity.class);
         i.putExtra("email",email);
         startActivity(i);
     }

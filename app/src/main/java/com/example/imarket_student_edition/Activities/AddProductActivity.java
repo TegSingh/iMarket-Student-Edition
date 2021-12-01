@@ -56,7 +56,7 @@ public class AddProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_product);
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
-        bottomNavigationView.setSelectedItemId(R.id.bookmark);
+        bottomNavigationView.setSelectedItemId(R.id.addPost);
         bottomNavSelection();
 
         saveProductButton = findViewById(R.id.up_button);
@@ -84,7 +84,7 @@ public class AddProductActivity extends AppCompatActivity {
                         print_product_list(product_list);
                         System.out.println("Product Added successfully");
                         Toast.makeText(AddProductActivity.this, "Product added successfully", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AddProductActivity.this, ProductPageActivity.class);
+                        Intent intent = new Intent(AddProductActivity.this, HomeActivity.class);
                         startActivity(intent);
                     }
                 }else {
@@ -262,19 +262,19 @@ public class AddProductActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.user:
-                        Intent intent = new Intent(AddProductActivity.this, UserActivity.class);
+                    case R.id.profile:
+                        Intent intent = new Intent(AddProductActivity.this, ProfileActivity.class);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.home:
-                        Intent intent2 = new Intent(AddProductActivity.this, ProductPageActivity.class);
+                        Intent intent2 = new Intent(AddProductActivity.this, HomeActivity.class);
                         startActivity(intent2);
                         overridePendingTransition(0,0);
                         return  true;
 
-                    case R.id.bookmark:
+                    case R.id.addPost:
                         return true;
                 }
                 return false;

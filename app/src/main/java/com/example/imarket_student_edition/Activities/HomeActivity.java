@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,8 +25,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class ProductPageActivity extends AppCompatActivity {
-        MyDatabase databaseHelper = new MyDatabase(ProductPageActivity.this);
+public class HomeActivity extends AppCompatActivity {
+        MyDatabase databaseHelper = new MyDatabase(HomeActivity.this);
         BottomNavigationView bottomNavigationView;
         CustomAdapter customAdapter;
         ImageView locationImage;
@@ -38,7 +37,7 @@ public class ProductPageActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_page);
+        setContentView(R.layout.activity_home);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -54,7 +53,7 @@ public class ProductPageActivity extends AppCompatActivity {
         locationImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProductPageActivity.this,MapsActivity.class);
+                Intent intent = new Intent(HomeActivity.this,MapsActivity.class);
                 startActivity(intent);
             }
         });
@@ -78,7 +77,7 @@ public class ProductPageActivity extends AppCompatActivity {
     public  void  callCustomAdaptor(){
         productModelList = databaseHelper.get_all_products();
         RecyclerView recyclerView = findViewById(R.id.products_recycleView);
-        customAdapter = new CustomAdapter(ProductPageActivity.this,this, productModelList);
+        customAdapter = new CustomAdapter(HomeActivity.this,this, productModelList);
         recyclerView.setAdapter(customAdapter);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
@@ -87,7 +86,7 @@ public class ProductPageActivity extends AppCompatActivity {
         Cursor cursor;
         cursor = databaseHelper.getData();
         if(cursor.getCount() == 0) {
-            Toast.makeText(ProductPageActivity.this, "No data found in database!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HomeActivity.this, "No data found in database!", Toast.LENGTH_SHORT).show();
 
         }else if(cursor.getCount() >0){
             cursor.moveToFirst();
@@ -104,8 +103,8 @@ public class ProductPageActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.user:
-                        Intent intent = new Intent(ProductPageActivity.this, UserActivity.class);
+                    case R.id.profile:
+                        Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
@@ -113,8 +112,8 @@ public class ProductPageActivity extends AppCompatActivity {
                     case R.id.home:
                         return  true;
 
-                    case R.id.bookmark:
-                        Intent intent1 = new Intent(ProductPageActivity.this, AddProductActivity.class);
+                    case R.id.addPost:
+                        Intent intent1 = new Intent(HomeActivity.this, AddProductActivity.class);
                         startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
