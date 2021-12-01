@@ -86,7 +86,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             CardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context,UpdateProduct.class);
+                    Intent intent = new Intent(context, UpdateProductActivity.class);
                     intent.putExtra("name", productmodel.getName());
                     intent.putExtra("price",productmodel.getPrice() );
                     intent.putExtra("condition",productmodel.getDescription());

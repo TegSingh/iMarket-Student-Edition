@@ -5,12 +5,11 @@
         android:title="Home"
         android:icon="@drawable/ic_home"/>
     <item
-        android:id="@+id/user"
-        android:title="USER"
+        android:id="@+id/profile"
+        android:title="Profile"
         android:icon="@drawable/ic_baseline_person_24"/>
     <item
-        android:id="@+id/bookmark"
-        android:title="BOOKMARK"
-        android:icon="@drawable/ic_baseline_bookmarks_24"/>
-
+        android:id="@+id/addPost"
+        android:title="Add Post"
+        android:icon="@drawable/ic_baseline_post_add_24"/>
 </menu>

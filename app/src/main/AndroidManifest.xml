@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IMarketStudentEdition">
         <activity
-            android:name=".Activities.UpdateProduct"
+            android:name=".Activities.UpdateProductActivity"
             android:exported="true" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -41,10 +41,10 @@
             android:name=".Activities.AddProductActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.UserActivity"
+            android:name=".Activities.ProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.ProductPageActivity"
+            android:name=".Activities.HomeActivity"
             android:exported="true" />
         <activity
             android:name=".Activities.UserRegistrationActivity"

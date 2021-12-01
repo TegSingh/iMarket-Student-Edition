@@ -6,10 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -19,14 +17,14 @@ import com.example.imarket_student_edition.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class UpdateProduct extends AppCompatActivity {
+public class UpdateProductActivity extends AppCompatActivity {
     EditText productName,productPrice, productCondition, update_page_user_name;
     String  productNameInput,productPriceInput, productConditionInput, uname;
     String  imagePath = "No Image";
     FloatingActionButton UpdateProductButton, delProductButton;
     ImageView updateImage;
     BottomNavigationView bottomNavigationView;
-    MyDatabase database_helper = new MyDatabase(UpdateProduct.this);
+    MyDatabase database_helper = new MyDatabase(UpdateProductActivity.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +56,7 @@ public class UpdateProduct extends AppCompatActivity {
 
 
         }else {
-            Toast.makeText(UpdateProduct.this, "No data.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UpdateProductActivity.this, "No data.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -66,7 +64,7 @@ public class UpdateProduct extends AppCompatActivity {
         Cursor cursor;
         cursor = database_helper.getData();
         if(cursor.getCount() == 0) {
-            Toast.makeText(UpdateProduct.this, "No data found in database!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UpdateProductActivity.this, "No data found in database!", Toast.LENGTH_SHORT).show();
 
         }else if(cursor.getCount() >0){
             cursor.moveToFirst();
@@ -81,22 +79,22 @@ public class UpdateProduct extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.user:
-                        Intent intent = new Intent(UpdateProduct.this, UserActivity.class);
+                    case R.id.profile:
+                        Intent intent = new Intent(UpdateProductActivity.this, ProfileActivity.class);
                         intent.putExtra("UserName",uname);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.home:
-                        Intent i = new Intent(UpdateProduct.this, ProductPageActivity.class);
+                        Intent i = new Intent(UpdateProductActivity.this, HomeActivity.class);
                         i.putExtra("UserName",uname);
                         startActivity(i);
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.bookmark:
-                        Intent intent1 = new Intent(UpdateProduct.this, AddProductActivity.class);
+                    case R.id.addPost:
+                        Intent intent1 = new Intent(UpdateProductActivity.this, AddProductActivity.class);
                         intent1.putExtra("UserName",uname);
                         startActivity(intent1);
                         overridePendingTransition(0,0);

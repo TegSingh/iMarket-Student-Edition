@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class MyDatabase  extends SQLiteOpenHelper {
 
     private Context context;
-    public String user_name, user_id;
 
     // Create constants and database parameters
     private static final String DATABASE_NAME = "iMarket.db";
@@ -132,7 +131,7 @@ public class MyDatabase  extends SQLiteOpenHelper {
         }
     }
 
-    public void  insert_Current_user_detail(String CurrentUser , String CurrentUserId){
+    public void insert_Current_user_detail(String CurrentUser , String CurrentUserId){
         System.out.println("Enter the insert current user detail method");
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -146,19 +145,19 @@ public class MyDatabase  extends SQLiteOpenHelper {
         if(number_of_rows == 0){
             long check_result = db.insert(NewUserTable, null, cv);
             if (check_result == -1) {
-                Toast.makeText(context, "Failed to New user", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Failed to New user", Toast.LENGTH_SHORT).show();
                 System.out.println("New user not added");
             } else {
-                Toast.makeText(context, "Added User Successfully", Toast.LENGTH_SHORT).show();
-                System.out.println("New user added*************************");
+                //Toast.makeText(context, "Added User Successfully", Toast.LENGTH_SHORT).show();
+                System.out.println("New user added");
             }
         }else{
             long result = db.update (NewUserTable, cv , NewUserTableID +"=?", new String[] {"1"} );
             if(result == -1){
-                Toast.makeText(context, "Failed to update*******", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
             }else {
                 System.out.println(" the result is :"+ result);
-                Toast.makeText(context, "Updated Successfully********", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Updated Successfully", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -173,46 +172,6 @@ public class MyDatabase  extends SQLiteOpenHelper {
         }
         return cursor;
     }
-
-
-    //Method to get use ID and Name
-    public String userName(String email) {
-       // System.out.println("Authenticate User method called from database helper");
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String query = "SELECT * FROM " + User_Table + " WHERE " + User_Column_Email + "=\'" + email + "\'";
-        Cursor cursor = db.rawQuery(query, null);
-
-        // Get the number of users with the given email and password
-        int number_of_users = cursor.getCount();
-        System.out.println("Number of Users fetched: " + number_of_users);
-
-        if (number_of_users == 1) {
-            cursor.moveToFirst();
-            // Get user name which is the second column
-            user_name = cursor.getString(1);
-            user_id = cursor.getString(0);
-            System.out.println("User found: Name: for product page " + user_name);
-            // Close the cursor and database object
-            cursor.close();
-            db.close();
-            return user_name;
-
-        } else if (number_of_users == 0) {
-            System.out.println("Database Helper: User email not found");
-            return null;
-        } else {
-            // THE CODE SHOULD NOT REACH THIS ELSE STATEMENT AFTER CORRECT EMAIL VALIDATION IN REGISTRATION
-            return null;
-        }
-    }
-    public String userID(){
-        if(user_name.length() != 0){
-            return user_id;
-        }
-        return null;
-    }
-
 
     // Method to get a list of all users
     public ArrayList<UserModel> get_all_users() {
@@ -239,7 +198,6 @@ public class MyDatabase  extends SQLiteOpenHelper {
                 user_list.add(user);
             } while(cur.moveToNext());
         }
-
         db.close();
         cur.close();
         return user_list;
@@ -267,7 +225,6 @@ public class MyDatabase  extends SQLiteOpenHelper {
                 products.add(product);
             } while (cursor.moveToNext());
         }
-
         return products;
     }
 
@@ -478,8 +435,6 @@ public class MyDatabase  extends SQLiteOpenHelper {
 
             } while (cursor.moveToNext());
         }
-
         return filtered_products;
     }
-
 }

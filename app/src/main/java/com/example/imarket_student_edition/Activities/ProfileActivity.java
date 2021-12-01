@@ -15,7 +15,7 @@ import com.example.imarket_student_edition.DatabaseHelper.MyDatabase;
 import com.example.imarket_student_edition.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class UserActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
     TextView uname;
     EditText user_update_name;
     String intentUser;
@@ -23,15 +23,15 @@ public class UserActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
     // Add my database helper
-    MyDatabase database_helper = new MyDatabase(UserActivity.this);
+    MyDatabase database_helper = new MyDatabase(ProfileActivity.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+        setContentView(R.layout.activity_profile);
 
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
-        bottomNavigationView.setSelectedItemId(R.id.user);
+        bottomNavigationView.setSelectedItemId(R.id.profile);
 
         uname = findViewById(R.id.u_name);
         user_update_name = findViewById(R.id.puser_name);
@@ -41,17 +41,17 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.user:
+                    case R.id.profile:
                         return true;
 
                     case R.id.home:
-                        Intent intent = new Intent(UserActivity.this, ProductPageActivity.class);
+                        Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return  true;
 
-                    case R.id.bookmark:
-                        Intent i = new Intent(UserActivity.this, AddProductActivity.class);
+                    case R.id.addPost:
+                        Intent i = new Intent(ProfileActivity.this, AddProductActivity.class);
                         startActivity(i);
                         overridePendingTransition(0,0);
                         return true;
@@ -65,7 +65,7 @@ public class UserActivity extends AppCompatActivity {
         Cursor cursor;
         cursor = database_helper.getData();
         if(cursor.getCount() == 0) {
-            Toast.makeText(UserActivity.this, "No data found in database!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ProfileActivity.this, "No data found in database!", Toast.LENGTH_SHORT).show();
 
         }else if(cursor.getCount() >0){
             cursor.moveToFirst();
