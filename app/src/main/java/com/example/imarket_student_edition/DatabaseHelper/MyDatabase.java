@@ -9,9 +9,7 @@ import android.widget.Toast;
 import com.example.imarket_student_edition.Models.ProductModel;
 import com.example.imarket_student_edition.Models.UserModel;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 public class MyDatabase extends SQLiteOpenHelper {
@@ -28,7 +26,6 @@ public class MyDatabase extends SQLiteOpenHelper {
     private static final String User_Column_Name = "Name";
     private static final String User_Column_Email = "Email";
     private static final String User_Column_Password = "Password";
-    private static final String User_Column_Location = "Location";
     private static final String User_Column_DateCreated = "DateCreated";
 
     // Define column names in Table Product
@@ -40,7 +37,8 @@ public class MyDatabase extends SQLiteOpenHelper {
     private static final String Product_Column_DateAdded = "DateAdded";
     private static final String Product_Column_Price = "Price";
     private static final String Product_Column_UserID = "UserID";
-    private static final String Product_Column_UserPhoneNumber = "UserNumber";
+    private static final String Product_Column_Contact_PhoneNumber = "UserNumber";
+    private static final String Product_Column_Location = "Location";
 
     private static final String NewUserTable = "NewUserTable";
     private static final String NewUserTableID = "NewUserTableID";
@@ -64,7 +62,6 @@ public class MyDatabase extends SQLiteOpenHelper {
                 User_Column_Name + " TEXT," +
                 User_Column_Email  + " TEXT," +
                 User_Column_Password + " PASSWORD," +
-                User_Column_Location + " Text," +
                 User_Column_DateCreated + " DATE);";
 
         db.execSQL(query);
@@ -78,7 +75,8 @@ public class MyDatabase extends SQLiteOpenHelper {
                 Product_Column_DateAdded + " DATE," +
                 Product_Column_Price + " Text," +
                 Product_Column_UserID + " INTEGER," +
-                Product_Column_UserPhoneNumber +" TEXT);";
+                Product_Column_Location + " Text," +
+                Product_Column_Contact_PhoneNumber +" TEXT);";
 
         db.execSQL(query2);
 
@@ -196,11 +194,10 @@ public class MyDatabase extends SQLiteOpenHelper {
                 String name = cur.getString(1);
                 String email = cur.getString(2);
                 String password = cur.getString(3);
-                String location = cur.getString(4);
-                String date_created = cur.getString(5);
+                String date_created = cur.getString(4);
 
                 //make note and add to list
-                UserModel user = new UserModel(id, name, email, password, location, date_created);
+                UserModel user = new UserModel(id, name, email, password, date_created);
 
                 // Print the user information
                 System.out.println();
@@ -228,9 +225,10 @@ public class MyDatabase extends SQLiteOpenHelper {
                 String date_created = cursor.getString(4);
                 String price = cursor.getString(5);
                 int user_id = cursor.getInt(6);
-                String phone_number = cursor.getString(7);
+                String phone_number = cursor.getString(8);
+                String location = cursor.getString(7);
 
-                ProductModel product = new ProductModel(id, name, image_video, description, date_created, price, user_id,phone_number);
+                ProductModel product = new ProductModel(id, name, image_video, description, date_created, price, user_id,phone_number,location);
                 System.out.println("Product: " + product.toString());
                 products.add(product);
             } while (cursor.moveToNext());
@@ -252,7 +250,6 @@ public class MyDatabase extends SQLiteOpenHelper {
         cv.put("name", user_updated.getName());
         cv.put("email", user_updated.getEmail());
         cv.put("password", user_updated.getPassword());
-        cv.put("location", user_updated.getLocation());
         cv.put("data_created", user_updated.getDate_created());
 
         String whereClause = "id = ?";
@@ -270,12 +267,14 @@ public class MyDatabase extends SQLiteOpenHelper {
     }
     // Method  to update a user in the product table
 
-    public void updateProduct(String id, String product_name, String condition, String price){
+    public void updateProduct(String id, String product_name, String condition, String price, String contactPhone, String location){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Product_Column_Name , product_name);
         contentValues.put(Product_Column_Description , condition);
         contentValues.put(Product_Column_Price , price);
+        contentValues.put(Product_Column_Contact_PhoneNumber , contactPhone);
+        contentValues.put(Product_Column_Location , location);
 
         long result = db.update (Product_Table, contentValues , Product_Column_ID +"=?", new String[] {id} );
 
@@ -343,7 +342,6 @@ public class MyDatabase extends SQLiteOpenHelper {
         cv.put(User_Column_Name, user.getName());
         cv.put(User_Column_Email, user.getEmail());
         cv.put(User_Column_Password, user.getPassword());
-        cv.put(User_Column_Location, user.getLocation());
         cv.put(User_Column_DateCreated, user.getDate_created());
 
         // Add the content values to the database
@@ -362,8 +360,8 @@ public class MyDatabase extends SQLiteOpenHelper {
     public boolean insert_location(String location, String id){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(User_Column_Location, location);
-        long result = db.update(User_Table, cv , User_Column_ID +"=?", new String[] {id} );
+        cv.put(Product_Column_Location, location);
+        long result = db.update(Product_Table, cv , Product_Column_UserID +"=?", new String[] {id} );
 
         if (result == -1) {
             // Insert was unsuccessful
@@ -389,7 +387,8 @@ public class MyDatabase extends SQLiteOpenHelper {
         cv.put(Product_Column_DateAdded, product.getDate_added());
         cv.put(Product_Column_Price, product.getPrice());
         cv.put(Product_Column_UserID, product.getUser_id());
-        cv.put(Product_Column_UserPhoneNumber, product.getPhone_number());
+        cv.put(Product_Column_Contact_PhoneNumber, product.getPhone_number());
+        cv.put(Product_Column_Location, product.getLocation());
 
         // Add the content values to the database
         long result = db.insert(Product_Table, null, cv);
@@ -470,12 +469,12 @@ public class MyDatabase extends SQLiteOpenHelper {
     }
 
     // Method to search product by product user id
-    public ArrayList<ProductModel> search_products(int userId) {
+    public ArrayList<ProductModel> search_products(String loc) {
     // Works
         System.out.println("Database helper: Method to search product called");
         ArrayList<ProductModel> filtered_products = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM " + Product_Table + " WHERE " + Product_Column_UserID + " LIKE \'%" + userId + "%\'";
+        String query = "SELECT * FROM " + Product_Table + " WHERE " + Product_Column_Location + " LIKE \'%" + loc + "%\'";
         Cursor cursor = db.rawQuery(query, null);
         System.out.println("Number of products fetched: " + cursor.getCount());
 
@@ -489,11 +488,41 @@ public class MyDatabase extends SQLiteOpenHelper {
                 String product_date_created = cursor.getString(4);
                 String price = cursor.getString(5);
                 String phone_number = cursor.getString(7);
+                String location = cursor.getString(8);
                 int user_id = cursor.getInt(6);
-                filtered_products.add(new ProductModel(id, product_name, image_video, description, product_date_created, price, user_id, phone_number));
+                filtered_products.add(new ProductModel(id, product_name, image_video, description, product_date_created, price, user_id, phone_number,location));
 
             } while (cursor.moveToNext());
         }
         return filtered_products;
     }
+
+    public ArrayList<ProductModel> searchPro(int uid) {
+        // Works
+        System.out.println("Database helper: Method to search product called");
+        ArrayList<ProductModel> filtered_products = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + Product_Table + " WHERE " + Product_Column_UserID + " LIKE \'%" + uid + "%\'";
+        Cursor cursor = db.rawQuery(query, null);
+        System.out.println("Number of products fetched: " + cursor.getCount());
+
+        if (cursor.moveToFirst()) {
+            do {
+                // Get the variable names from the cursor
+                int id = cursor.getInt(0);
+                String product_name = cursor.getString(1);
+                String image_video = cursor.getString(2);
+                String description = cursor.getString(3);
+                String product_date_created = cursor.getString(4);
+                String price = cursor.getString(5);
+                String phone_number = cursor.getString(7);
+                String location = cursor.getString(8);
+                int user_id = cursor.getInt(6);
+                filtered_products.add(new ProductModel(id, product_name, image_video, description, product_date_created, price, user_id, phone_number,location));
+
+            } while (cursor.moveToNext());
+        }
+        return filtered_products;
+    }
+
 }

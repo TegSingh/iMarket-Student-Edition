@@ -21,14 +21,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class UpdateProductActivity extends AppCompatActivity {
-    EditText productName,productPrice, productCondition, update_page_user_name;
-    String  productNameInput,productPriceInput, productConditionInput, uname;
+
+    EditText productName,productPrice, productCondition, update_page_user_name, productNum;
+    String  productNameInput,productPriceInput, productConditionInput, uname, contactPhone, productLocation;
     String  imagePath = "No Image";
     FloatingActionButton UpdateProductButton, delProductButton;
     ImageView updateImage;
     int user_id;
     BottomNavigationView bottomNavigationView;
     MyDatabase database_helper = new MyDatabase(UpdateProductActivity.this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class UpdateProductActivity extends AppCompatActivity {
         productName = findViewById(R.id.p_name_update);
         productCondition = findViewById(R.id.p_condition_update);
         productPrice = findViewById(R.id.p_price_update);
+        productNum = findViewById(R.id.ProductUserNumber);
 
         UpdateProductButton = findViewById(R.id.up_button);
         delProductButton = findViewById(R.id.del_button);
@@ -52,7 +55,9 @@ public class UpdateProductActivity extends AppCompatActivity {
                 productNameInput =  productName.getText().toString().trim();
                 productPriceInput = productPrice.getText().toString().trim();
                 productConditionInput= productCondition.getText().toString().trim();
-                database_helper.updateProduct(String.valueOf(user_id),productNameInput, productConditionInput,productPriceInput);
+                contactPhone = productNum.getText().toString().trim();
+
+                database_helper.updateProduct(String.valueOf(user_id),productNameInput, productConditionInput,productPriceInput,contactPhone,productLocation);
                 Intent intent = new Intent(UpdateProductActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }

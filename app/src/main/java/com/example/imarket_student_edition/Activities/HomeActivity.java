@@ -87,8 +87,8 @@ public class HomeActivity extends AppCompatActivity {
         if(getIntent().hasExtra("Location")){
             String location = getIntent().getStringExtra("Location");
             System.out.println("*******" + location);
-            databaseHelper.insert_location(location,user_id);
-            productModelList = databaseHelper.search_products(Integer.parseInt(user_id));
+            //databaseHelper.insert_location(location,user_id);
+            productModelList = databaseHelper.search_products(location);
             pick_location.setText(location);
 
         } else {

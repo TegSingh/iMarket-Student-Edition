@@ -7,17 +7,15 @@ public class UserModel {
     private String name;
     private String email;
     private String password;
-    private String location;
     private String date_created;
 
     // Declare the constructor
-    public UserModel(int id, String name, String email, String password, String location, String date_created) {
+    public UserModel(int id, String name, String email, String password, String date_created) {
         System.out.println("Constructor for the model USER called");
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.location = location;
         this.date_created = date_created;
     }
 
@@ -53,14 +51,6 @@ public class UserModel {
         this.password = password;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getDate_created() {
         return date_created;
     }
@@ -76,13 +66,12 @@ public class UserModel {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", location='" + location + '\'' +
                 ", date_created='" + date_created + '\'' +
                 '}';
     }
 
     public String toStringFormatted() {
-        return "User ID: " + this.id + " Name: " + this.name + " Location: " + this.location;
+        return "User ID: " + this.id + " Name: " + this.name;
     }
 
 
