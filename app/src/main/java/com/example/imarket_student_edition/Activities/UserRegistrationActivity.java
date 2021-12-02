@@ -45,7 +45,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
     FusedLocationProviderClient fusedLocationProviderClient;
     UserModel user;
 
-    String name, email, password, location, date_created;
+    String name, email, password, date_created;
     boolean validate = false;
     int id;
 
@@ -68,7 +68,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
         // Call method to set the input values
         if(get_input_values()){
             // Create a user model
-            user = new UserModel(id, name, email, password, location, date_created);
+            user = new UserModel(id, name, email, password, date_created);
             System.out.println("User to be added: " + user.toString());
             // Use database helper to add the user to the database
             boolean result = database_helper.insert_user(user);
@@ -106,8 +106,7 @@ public class UserRegistrationActivity extends AppCompatActivity {
             password = editTextPasswordRegistration.getText().toString().trim();
             validate = true;
         }
-        // NEED TO ADD LOCATION TRACKING/SOME WAY OF GEOCODING TO THIS
-        location = "RANDOM LOCATION";
+
         // Set data_created as current date
         Date date = new Date();
         date_created = date.toString();

@@ -83,7 +83,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
     //  calls CustomAdaptor java file
     public  void  callCustomAdaptor(){
-        productModelList = database_helper.search_products(user_id);
+        productModelList = database_helper.searchPro(user_id);
         //productModelList = database_helper.get_all_products();
 
         RecyclerView recyclerView = findViewById(R.id.p_recycleview);

@@ -47,5 +47,6 @@
     <string name="description">Description:</string>
     <string name="product_page">Product Page</string>
     <string name="textview">TextView</string>
+    <string name="address">address</string>
 
 </resources>

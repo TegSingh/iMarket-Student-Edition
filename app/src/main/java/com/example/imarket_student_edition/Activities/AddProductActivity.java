@@ -11,6 +11,8 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,21 +26,25 @@ import android.widget.Toast;
 import com.example.imarket_student_edition.DatabaseHelper.MyDatabase;
 import com.example.imarket_student_edition.Models.ProductModel;
 import com.example.imarket_student_edition.R;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class AddProductActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     FloatingActionButton saveProductButton;
-    EditText productName,productPrice, productCondition,productUserNumber;
+    EditText productName,productPrice, productCondition,productUserNumber, productLoc;
     TextView productUserName;
-    String productNameInput,productPriceInput, productConditionInput,productUserNameInput,productUserNumberInput, date_Added;
+    String productNameInput,productPriceInput, productConditionInput,productUserNameInput,
+            productUserNumberInput, date_Added, product_location;
     String  imagePath = "No Image";
     int product_id, user_id;
     ProductModel product;
@@ -66,6 +72,7 @@ public class AddProductActivity extends AppCompatActivity {
         productCondition = findViewById(R.id.ProductCondition);
         productUserName = findViewById(R.id.UpdatePage_userName);
         productUserNumber = findViewById(R.id.ProductUserNumber);
+        productLoc = findViewById(R.id.productLocation);
         image_selection = findViewById(R.id.Select_image);
         imageDestination = findViewById(R.id.product_image);
 
@@ -77,7 +84,9 @@ public class AddProductActivity extends AppCompatActivity {
 
                 if(getProductData()) {
                     // Create a user model
-                    product = new ProductModel(product_id, productNameInput, imagePath, productConditionInput, date_Added, productPriceInput, user_id, productUserNumberInput);
+                    product = new ProductModel(product_id, productNameInput, imagePath,
+                            productConditionInput, date_Added, productPriceInput, user_id,
+                            productUserNumberInput, product_location);
                     boolean result = database_helper.insert_product(product);
                     if (result) {
                         // Print the updated list
@@ -237,13 +246,31 @@ public class AddProductActivity extends AppCompatActivity {
         }else if (productCondition.getText().toString().trim().length() == 0){
             productCondition.setError("Product condition error");
 
+        }else if (productLoc.getText().toString().trim().length() == 0){
+            productLoc.setError("Product location error");
+
+        }else if (productUserNumber.getText().toString().trim().length() == 0){
+            productUserNumber.setError("Product contact number error");
         }else {
             productNameInput = productName.getText().toString().trim();
             productPriceInput = productPrice.getText().toString().trim();
             productConditionInput = productCondition.getText().toString().trim();
+            productUserNumberInput = productUserNumber.getText().toString().trim();
+            product_location = productLoc.getText().toString().trim();
+            //List<Address> addresses = null;
+            try {
+                Geocoder geocoder = new Geocoder(this);;
+                List<Address> addresses = geocoder.getFromLocationName(product_location,1);
+                Address address = addresses.get(0);
+                //latlng values can be used to get address
+                product_location = address.getLocality();
+                System.out.println("*****INSIDE GET PRODUCTS DATA FUNCTION****" + product_location);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             validation = true;
         }
-        productUserNumberInput = productUserNumber.getText().toString().trim();
+
         // Set data_created as current date
         Date date = new Date();
         date_Added = date.toString();

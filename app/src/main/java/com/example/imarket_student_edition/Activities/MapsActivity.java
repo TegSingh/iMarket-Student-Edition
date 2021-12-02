@@ -89,11 +89,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Cursor cursor;
-//                cursor = databaseHelper.getData();
-//                cursor.moveToFirst();
-//                userId = cursor.getString(2);
-//                databaseHelper.insert_location(locationCity,userId);
                 // Create the intent for the new activity and start the activity
                 Intent i = new Intent(MapsActivity.this, HomeActivity.class);
                 i.putExtra("Location",locationCity);

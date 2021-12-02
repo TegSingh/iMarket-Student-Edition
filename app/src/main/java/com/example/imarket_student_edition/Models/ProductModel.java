@@ -10,11 +10,12 @@ public class ProductModel {
     private String date_added;
     private String price;
     private String phone_number;
+    private String location;
     // This is the foreign key to the User table forming a one-to-many relationship
     private int user_id;
 
     // Define the constructor
-    public ProductModel(int id, String name, String img_video_url, String description, String date_added, String price, int user_id, String phone_number) {
+    public ProductModel(int id, String name, String img_video_url, String description, String date_added, String price, int user_id, String phone_number, String location) {
         this.id = id;
         this.name = name;
         this.img_video_url = img_video_url;
@@ -23,6 +24,7 @@ public class ProductModel {
         this.price = price;
         this.user_id = user_id;
         this.phone_number = phone_number;
+        this.location = location;
     }
 
     public int getId() {
@@ -87,6 +89,14 @@ public class ProductModel {
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     // Overwrite the Tostring method

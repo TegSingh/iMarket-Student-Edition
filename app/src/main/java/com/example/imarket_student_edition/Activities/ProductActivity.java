@@ -71,9 +71,6 @@ public class ProductActivity extends AppCompatActivity {
 
             cdbNumber = getIntent().getStringExtra("unumber");
 
-
-           // System.out.println("++***+*+*****++++++" + userID);
-
             // store the string
             p_name.setText(pdbName);
             p_description.setText(pdbDescription);
