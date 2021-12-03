@@ -78,7 +78,7 @@ public class UpdateProductActivity extends AppCompatActivity {
                 System.out.println("81888383888************"+ updateproductnumber);
                 System.out.println("81888383888************"+ updateproductLocation);
 
-                //database_helper.updateProduct(String.valueOf(user_id),productNameInput, productConditionInput,productPriceInput,contactPhone,updateproductLocation,updateproductnumber, imagePath);
+                database_helper.updateProduct(String.valueOf(user_id),productNameInput, productConditionInput,productPriceInput,contactPhone,updateproductLocation,updateproductnumber, imagePath);
                 Intent intent = new Intent(UpdateProductActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }

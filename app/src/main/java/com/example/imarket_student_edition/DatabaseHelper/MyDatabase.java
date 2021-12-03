@@ -179,6 +179,31 @@ public class MyDatabase extends SQLiteOpenHelper {
         cursor = db.rawQuery(query, null);
         return  cursor;
     }
+    public void update_user_profile(String id, String name , String password, String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(User_Column_Name, name);
+        contentValues.put(User_Column_Password, password);
+        contentValues.put(User_Column_Email, email);
+
+
+        long result = db.update (User_Table, contentValues , User_Column_ID +"=?", new String[] {id} );
+
+        if(result == -1){
+            Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
+        }else {
+            System.out.println(" the result is :"+ result);
+            ContentValues cv = new ContentValues();
+            cv.put(NewUserName,name);
+            Toast.makeText(context, "Updated Successfully", Toast.LENGTH_SHORT).show();
+            long result1 = db.update (NewUserTable, cv , NewUserID +"=?", new String[] {id} );
+            if(result1 == -1){
+                Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
 
     // Method to get a list of all users
     public ArrayList<UserModel> get_all_users() {
