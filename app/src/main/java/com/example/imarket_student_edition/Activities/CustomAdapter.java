@@ -91,7 +91,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                     intent.putExtra("price",productmodel.getPrice() );
                     intent.putExtra("condition",productmodel.getDescription());
                     intent.putExtra("image", productmodel.getImg_video_url());
-
+                    intent.putExtra("plocation",productmodel.getLocation());
                     intent.putExtra("uid", String.valueOf(productmodel.getUser_id()));
                     intent.putExtra("unumber", productmodel.getPhone_number());
                     //context.startActivity(intent);

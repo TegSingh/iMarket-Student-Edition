@@ -28,10 +28,10 @@
         <entry key="app/src/main/res/layout/activity_add_product.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18568840579710144" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/activity_product.xml" value="0.17239583333333333" />
+        <entry key="app/src/main/res/layout/activity_product.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_product_page.xml" value="0.45" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_update_product.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_update_product.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_user.xml" value="0.20471014492753623" />
         <entry key="app/src/main/res/layout/activity_user_authentication.xml" value="0.20471014492753623" />
         <entry key="app/src/main/res/layout/product_recycle_view.xml" value="0.17395833333333333" />

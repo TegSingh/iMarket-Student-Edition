@@ -92,6 +92,8 @@ public class CustomProfileAdapter extends RecyclerView.Adapter<CustomProfileAdap
                     intent.putExtra("condition",productmodel.getDescription());
                     intent.putExtra("image", productmodel.getImg_video_url());
                     intent.putExtra("uid", String.valueOf(productmodel.getId()));
+                    intent.putExtra("ulocation",productmodel.getLocation());
+                    intent.putExtra("updatenumber", productmodel.getPhone_number());
                     context.startActivity(intent);
                     activity.startActivityForResult(intent, 1);
                 }

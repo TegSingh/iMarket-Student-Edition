@@ -29,7 +29,7 @@
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/p_user_location" />
+        app:layout_constraintTop_toBottomOf="@+id/p_date_created" />
 
     <EditText
         android:id="@+id/puser_name"
@@ -66,19 +66,17 @@
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
         android:text="@string/password"
         android:textColor="@color/teal_700"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/p_user_password"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/textView19" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="82dp"
         android:layout_marginBottom="82dp"
         android:text="@string/name"
@@ -86,21 +84,21 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/p_user_password"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView21"
         app:layout_constraintTop_toTopOf="@+id/textView10" />
 
     <TextView
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="7dp"
-        android:text="@string/location"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/date_created"
         android:textColor="@color/teal_700"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/p_user_location"
-        app:layout_constraintEnd_toStartOf="@+id/p_user_location" />
+        app:layout_constraintBottom_toBottomOf="@+id/p_date_created"
+        app:layout_constraintEnd_toStartOf="@+id/p_date_created" />
 
     <TextView
         android:id="@+id/textView21"
@@ -130,19 +128,18 @@
         app:layout_constraintTop_toBottomOf="@+id/p_user_password"
         tools:ignore="TextContrastCheck" />
 
-    <EditText
-        android:id="@+id/p_user_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/p_date_created"
+        android:layout_width="209dp"
+        android:layout_height="38dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="1dp"
         android:ems="10"
-        android:hint="@string/current_location"
+        android:hint="@string/date_created"
         android:importantForAutofill="no"
-        android:inputType="textPersonName"
         android:minHeight="48dp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/p_user_email"
+        app:layout_constraintStart_toStartOf="@+id/p_user_email"
         app:layout_constraintTop_toBottomOf="@+id/p_user_email"
         tools:ignore="TextContrastCheck" />
 

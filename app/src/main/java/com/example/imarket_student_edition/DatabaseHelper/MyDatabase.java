@@ -267,7 +267,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     }
     // Method  to update a user in the product table
 
-    public void updateProduct(String id, String product_name, String condition, String price, String contactPhone, String location){
+    public void updateProduct(String id, String product_name, String condition, String price, String contactPhone, String location, String phonenum, String imgepath){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Product_Column_Name , product_name);
@@ -275,6 +275,9 @@ public class MyDatabase extends SQLiteOpenHelper {
         contentValues.put(Product_Column_Price , price);
         contentValues.put(Product_Column_Contact_PhoneNumber , contactPhone);
         contentValues.put(Product_Column_Location , location);
+        contentValues.put(Product_Column_Contact_PhoneNumber,phonenum);
+        contentValues.put(Product_Column_Image_video,imgepath);
+
 
         long result = db.update (Product_Table, contentValues , Product_Column_ID +"=?", new String[] {id} );
 
@@ -487,8 +490,8 @@ public class MyDatabase extends SQLiteOpenHelper {
                 String description = cursor.getString(3);
                 String product_date_created = cursor.getString(4);
                 String price = cursor.getString(5);
-                String phone_number = cursor.getString(7);
-                String location = cursor.getString(8);
+                String phone_number = cursor.getString(8);
+                String location = cursor.getString(7);
                 int user_id = cursor.getInt(6);
                 filtered_products.add(new ProductModel(id, product_name, image_video, description, product_date_created, price, user_id, phone_number,location));
 
@@ -515,8 +518,8 @@ public class MyDatabase extends SQLiteOpenHelper {
                 String description = cursor.getString(3);
                 String product_date_created = cursor.getString(4);
                 String price = cursor.getString(5);
-                String phone_number = cursor.getString(7);
-                String location = cursor.getString(8);
+                String phone_number = cursor.getString(8);
+                String location = cursor.getString(7);
                 int user_id = cursor.getInt(6);
                 filtered_products.add(new ProductModel(id, product_name, image_video, description, product_date_created, price, user_id, phone_number,location));
 

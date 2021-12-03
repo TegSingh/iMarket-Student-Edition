@@ -30,8 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/product_image_rec"
             android:text="ProductName"
+            android:textAllCaps="false"
             android:textColor="@color/teal_700"
-            android:textSize="34sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/ProductPrice_rec"
@@ -40,6 +41,6 @@
             android:layout_below="@+id/ProductName_rec"
             android:text="Price"
             android:textColor="@color/teal_700"
-            android:textSize="26sp" />
+            android:textSize="25sp" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -4,119 +4,170 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.AddProductActivity">
+    tools:context=".Activities.AddProductActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="34dp">
 
     <ImageView
         android:id="@+id/update_img"
-        android:layout_width="258dp"
+        android:layout_width="0dp"
         android:layout_height="134dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="52dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_desc"
-        app:layout_constraintEnd_toEndOf="@+id/p_name_update"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toStartOf="@+id/del_button"
+        app:layout_constraintStart_toEndOf="@+id/update_img_selection"
+        app:layout_constraintTop_toTopOf="@+id/textView"
         app:srcCompat="@drawable/ic_image" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginBottom="38dp"
-        android:text="@string/condition"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/p_price_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="11dp"
         android:ems="10"
         android:hint="@string/cad"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/p_condition_update"
-        app:layout_constraintStart_toStartOf="@+id/p_condition_update" />
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/p_name_update" />
+
+    <TextView
+        android:id="@+id/textViewLocation_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/location"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/productLocation_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:hint="@string/address"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="@+id/p_condition_update"
+        app:layout_constraintTop_toBottomOf="@+id/p_condition_update"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="94dp"
+        android:layout_marginBottom="6dp"
         android:text="@string/number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/update_user_number"
+        app:layout_constraintStart_toStartOf="@+id/textView7" />
 
     <EditText
         android:id="@+id/p_name_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
         android:ems="10"
         android:hint="@string/product_name"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="@+id/p_price_update"
+        app:layout_constraintTop_toBottomOf="@+id/update_img"
         tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/p_condition_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="13dp"
         android:ems="10"
-        android:hint="@string/condition_hint"
+        android:hint="@string/description"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintBottom_toTopOf="@+id/textViewLocation_update"
+        app:layout_constraintStart_toStartOf="@+id/p_price_update"
+        app:layout_constraintTop_toBottomOf="@+id/p_price_update"
         tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/p_condition_update"
+        app:layout_constraintStart_toStartOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="36dp"
         android:text="@string/price"
-        app:layout_constraintBottom_toBottomOf="@+id/p_price_update"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
         android:text="@string/product_info"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/p_name_update"
-        app:layout_constraintStart_toStartOf="@+id/p_name_update" />
+        app:layout_constraintStart_toStartOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="27dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="7dp"
         android:text="@string/contact_info"
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/UpdatePage_userName1"
-        app:layout_constraintStart_toStartOf="@+id/UpdatePage_userName1" />
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/productLocation_update" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="34dp"
+        android:layout_marginTop="238dp"
+        android:layout_marginBottom="238dp"
         android:text="@string/name"
-        app:layout_constraintBottom_toTopOf="@+id/p_price_update"
-        app:layout_constraintEnd_toStartOf="@+id/p_name_update" />
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
@@ -124,47 +175,54 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
         android:text="@string/update_delete"
+        android:textColor="@color/teal_700"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/update_img"
-        app:layout_constraintStart_toStartOf="@+id/update_img"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="6dp"
         android:text="@string/name"
-        app:layout_constraintBaseline_toBaselineOf="@+id/UpdatePage_userName1"
-        app:layout_constraintEnd_toStartOf="@+id/UpdatePage_userName1" />
+        android:textColor="@color/teal_700"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/UpdatePage_userName1"
+        app:layout_constraintStart_toStartOf="@+id/textViewLocation_update" />
 
     <EditText
-        android:id="@+id/ProductUserNumber"
+        android:id="@+id/update_user_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="@string/seller_phone"
         android:importantForAutofill="no"
         android:inputType="number"
         android:minHeight="48dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintStart_toStartOf="@+id/UpdatePage_userName1"
         tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/UpdatePage_userName1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="7dp"
         android:layout_marginBottom="21dp"
         android:ems="10"
         android:hint="@string/seller_name"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/ProductUserNumber"
-        app:layout_constraintStart_toStartOf="@+id/ProductUserNumber"
+        app:layout_constraintBottom_toTopOf="@+id/update_user_number"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
         tools:ignore="TextContrastCheck" />
 
 
@@ -172,11 +230,13 @@
         android:id="@+id/up_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="20dp"
         android:clickable="true"
         android:contentDescription="@string/todo"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/del_button"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/update_img"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_check_circle_24"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
@@ -187,7 +247,7 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"
@@ -204,25 +264,30 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="50dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="140dp"
+        android:id="@+id/update_img_selection"
+        android:layout_width="72dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="112dp"
         android:layout_marginEnd="12dp"
+        android:layout_marginBottom="112dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toStartOf="@+id/update_img"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/up_button"
         app:srcCompat="@drawable/ic_baseline_add_a_photo_24" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/del_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="19dp"
         android:clickable="true"
-        app:layout_constraintEnd_toEndOf="@+id/up_button"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/up_button"
+        app:layout_constraintBottom_toBottomOf="@+id/update_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/update_img"
         app:layout_constraintTop_toBottomOf="@+id/up_button"
+        app:layout_constraintVertical_bias="0.982"
         app:srcCompat="@drawable/ic_baseline_delete_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

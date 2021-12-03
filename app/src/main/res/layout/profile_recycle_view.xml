@@ -14,14 +14,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/teal_700"
         android:backgroundTint="@null">
 
         <ImageView
             android:id="@+id/product_image_rec"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:elevation="5dp"
             android:fadingEdge="horizontal"

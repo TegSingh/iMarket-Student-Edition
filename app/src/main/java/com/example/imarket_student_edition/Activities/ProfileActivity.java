@@ -23,9 +23,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
-    TextView uname;
+    TextView uname, user_account_created;
     FloatingActionButton update;
-    EditText user_update_name, user_update_password, user_update_email, user_update_location;
+    EditText user_update_name, user_update_password, user_update_email;
     int user_id;
     CustomProfileAdapter customProfileAdapter;
     BottomNavigationView bottomNavigationView;
@@ -43,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.profile);
         user_update_email = findViewById(R.id.p_user_email);
         user_update_password = findViewById(R.id.p_user_password);
-        user_update_location = findViewById(R.id.p_user_location);
+        user_account_created = findViewById(R.id.p_date_created);
 
         uname = findViewById(R.id.u_name);
         user_update_name = findViewById(R.id.puser_name);
@@ -121,7 +121,7 @@ public class ProfileActivity extends AppCompatActivity {
             cursor.moveToFirst();
             user_update_email.setText(cursor.getString(2));
             user_update_password.setText(cursor.getString(3));
-            user_update_location.setText(cursor.getString(4));
+            user_account_created.setText(cursor.getString(4));
 
         }
         callCustomAdaptor();

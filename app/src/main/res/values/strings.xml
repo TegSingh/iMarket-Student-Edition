@@ -48,5 +48,6 @@
     <string name="product_page">Product Page</string>
     <string name="textview">TextView</string>
     <string name="address">address</string>
+    <string name="date_created">Date Created</string>
 
 </resources>
