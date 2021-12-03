@@ -29,8 +29,8 @@ public class HomeActivity extends AppCompatActivity {
         MyDatabase databaseHelper = new MyDatabase(HomeActivity.this);
         BottomNavigationView bottomNavigationView;
         CustomAdapter customAdapter;
-        ImageView locationImage;
-        TextView userName, pick_location;
+        ImageView locationImage, empty_txt_img;
+        TextView userName, pick_location, empty_txt;
         String user_Name,user_id;
 
         private ArrayList<ProductModel> productModelList;
@@ -47,6 +47,8 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.home);
         userName = findViewById(R.id.UserLoginName);
         pick_location = findViewById(R.id.pickLocation);
+        empty_txt = findViewById(R.id.text_empty_home_pg);
+        empty_txt_img = findViewById(R.id.empty_product_image_home);
         get_current_user_info();
         bottomNavSelection();
         locationImage = findViewById(R.id.imageButton2);
@@ -93,6 +95,13 @@ public class HomeActivity extends AppCompatActivity {
 
         } else {
             productModelList = databaseHelper.get_all_products();
+            if(productModelList.isEmpty()){
+                empty_txt.setVisibility(View.VISIBLE);
+                empty_txt_img.setVisibility(View.VISIBLE);
+            }else {
+                empty_txt.setVisibility(View.GONE);
+                empty_txt_img.setVisibility(View.GONE);
+            }
         }
         RecyclerView recyclerView = findViewById(R.id.products_recycleView);
         customAdapter = new CustomAdapter(HomeActivity.this,this, productModelList);

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,11 +25,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
-    TextView uname, user_account_created;
+    TextView uname, user_account_created, text_below_img;
     FloatingActionButton update;
     EditText user_update_name, user_update_password, user_update_email;
     String updated_p_name, updated_p_email,  updated_p_password;
     int user_id;
+    ImageView product_empty;
     CustomProfileAdapter customProfileAdapter;
     BottomNavigationView bottomNavigationView;
     private ArrayList<ProductModel> productModelList;
@@ -46,6 +48,8 @@ public class ProfileActivity extends AppCompatActivity {
         user_update_email = findViewById(R.id.p_user_email);
         user_update_password = findViewById(R.id.p_user_password);
         user_account_created = findViewById(R.id.p_date_created);
+        product_empty = findViewById(R.id.profile_empty_product);
+        text_below_img = findViewById(R.id.product_empty_txt_profile);
         update = findViewById(R.id.up_profile);
 
         uname = findViewById(R.id.u_name);
@@ -99,6 +103,13 @@ public class ProfileActivity extends AppCompatActivity {
     //  calls CustomAdaptor java file
     public  void  callCustomAdaptor(){
         productModelList = database_helper.searchPro(user_id);
+        if(productModelList.isEmpty()){
+            product_empty.setVisibility(View.VISIBLE);
+            text_below_img.setVisibility(View.VISIBLE);
+        }else {
+            product_empty.setVisibility(View.GONE);
+            text_below_img.setVisibility(View.GONE);
+        }
         //productModelList = database_helper.get_all_products();
 
         RecyclerView recyclerView = findViewById(R.id.p_recycleview);
