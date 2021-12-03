@@ -24,8 +24,8 @@ public class ProductActivity extends AppCompatActivity {
     private ImageView p_image;
     private ImageButton imageButton;
     private BottomNavigationView bottomNavigationView;
-    private TextView p_name, p_price, p_description, c_name, c_number;
-    private String pdbName, pdbPrice, pdbDescription, pdbImage, cdbNumber, userID;
+    private TextView p_name, p_price, p_description, c_name, c_number,p_location;
+    private String pdbName, pdbPrice, pdbDescription, pdbImage, cdbNumber, userID,product_page_location;
     public String uname;
     MyDatabase db_helper;
 
@@ -39,7 +39,7 @@ public class ProductActivity extends AppCompatActivity {
         p_price = findViewById(R.id.product_price);
         p_description = findViewById(R.id.product_description);
         p_image = findViewById(R.id.product_image);
-
+        p_location = findViewById(R.id.productpage_location);
         bottomNavigationView = findViewById(R.id.bottom_nav);
 
         c_name = findViewById(R.id.contact_name);
@@ -68,16 +68,16 @@ public class ProductActivity extends AppCompatActivity {
             pdbDescription= getIntent().getStringExtra("condition");
             pdbImage = getIntent().getStringExtra("image");
             userID = getIntent().getStringExtra("uid");
-
+            product_page_location = getIntent().getStringExtra("plocation");
             cdbNumber = getIntent().getStringExtra("unumber");
 
             // store the string
             p_name.setText(pdbName);
             p_description.setText(pdbDescription);
-            p_price.setText(pdbPrice);
+            p_price.setText("$ "+pdbPrice+" CAD");
             p_image.setImageBitmap(BitmapFactory.decodeFile(String.valueOf(pdbImage)));
-
-            c_number.setText(cdbNumber);
+            p_location.setText(product_page_location);
+            c_number.setText("+ "+cdbNumber);
 
             getContactData();
 

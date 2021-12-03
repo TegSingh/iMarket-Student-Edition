@@ -49,7 +49,7 @@ public class AddProductActivity extends AppCompatActivity {
     int product_id, user_id;
     ProductModel product;
     Boolean validation = false;
-    ImageView image_selection, camera,imageDestination;
+    ImageView image_selection,imageDestination;
     private static final int REQUEST_CODE_STORAGE_PERMISSION = 1;
     private static final int REQUEST_CODE_SELECT_IMAGE = 2;
     private static final int CAMERA_REQUEST = 100;

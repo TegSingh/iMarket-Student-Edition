@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,9 +24,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity {
-    TextView uname;
+    TextView uname, user_account_created;
     FloatingActionButton update;
-    EditText user_update_name, user_update_password, user_update_email, user_update_location;
+    EditText user_update_name, user_update_password, user_update_email;
+    String updated_p_name, updated_p_email,  updated_p_password;
     int user_id;
     CustomProfileAdapter customProfileAdapter;
     BottomNavigationView bottomNavigationView;
@@ -43,12 +45,25 @@ public class ProfileActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.profile);
         user_update_email = findViewById(R.id.p_user_email);
         user_update_password = findViewById(R.id.p_user_password);
-        user_update_location = findViewById(R.id.p_user_location);
+        user_account_created = findViewById(R.id.p_date_created);
+        update = findViewById(R.id.up_profile);
 
         uname = findViewById(R.id.u_name);
         user_update_name = findViewById(R.id.puser_name);
         get_current_user_id();
         //callCustomAdaptor();
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updated_p_name = user_update_name.getText().toString().trim();
+                updated_p_email = user_update_email.getText().toString().trim();
+                updated_p_password = user_update_password.getText().toString().trim();
+                database_helper.update_user_profile(String.valueOf(user_id),updated_p_name,updated_p_password,updated_p_email);
+                Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -121,8 +136,7 @@ public class ProfileActivity extends AppCompatActivity {
             cursor.moveToFirst();
             user_update_email.setText(cursor.getString(2));
             user_update_password.setText(cursor.getString(3));
-            user_update_location.setText(cursor.getString(4));
-
+            user_account_created.setText(cursor.getString(4));
         }
         callCustomAdaptor();
     }

@@ -179,6 +179,31 @@ public class MyDatabase extends SQLiteOpenHelper {
         cursor = db.rawQuery(query, null);
         return  cursor;
     }
+    public void update_user_profile(String id, String name , String password, String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(User_Column_Name, name);
+        contentValues.put(User_Column_Password, password);
+        contentValues.put(User_Column_Email, email);
+
+
+        long result = db.update (User_Table, contentValues , User_Column_ID +"=?", new String[] {id} );
+
+        if(result == -1){
+            Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
+        }else {
+            System.out.println(" the result is :"+ result);
+            ContentValues cv = new ContentValues();
+            cv.put(NewUserName,name);
+            Toast.makeText(context, "Updated Successfully", Toast.LENGTH_SHORT).show();
+            long result1 = db.update (NewUserTable, cv , NewUserID +"=?", new String[] {id} );
+            if(result1 == -1){
+                Toast.makeText(context, "Failed to update", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
 
     // Method to get a list of all users
     public ArrayList<UserModel> get_all_users() {
@@ -267,7 +292,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     }
     // Method  to update a user in the product table
 
-    public void updateProduct(String id, String product_name, String condition, String price, String contactPhone, String location){
+    public void updateProduct(String id, String product_name, String condition, String price, String contactPhone, String location, String phonenum, String imgepath){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(Product_Column_Name , product_name);
@@ -275,6 +300,9 @@ public class MyDatabase extends SQLiteOpenHelper {
         contentValues.put(Product_Column_Price , price);
         contentValues.put(Product_Column_Contact_PhoneNumber , contactPhone);
         contentValues.put(Product_Column_Location , location);
+        contentValues.put(Product_Column_Contact_PhoneNumber,phonenum);
+        contentValues.put(Product_Column_Image_video,imgepath);
+
 
         long result = db.update (Product_Table, contentValues , Product_Column_ID +"=?", new String[] {id} );
 
@@ -487,8 +515,8 @@ public class MyDatabase extends SQLiteOpenHelper {
                 String description = cursor.getString(3);
                 String product_date_created = cursor.getString(4);
                 String price = cursor.getString(5);
-                String phone_number = cursor.getString(7);
-                String location = cursor.getString(8);
+                String phone_number = cursor.getString(8);
+                String location = cursor.getString(7);
                 int user_id = cursor.getInt(6);
                 filtered_products.add(new ProductModel(id, product_name, image_video, description, product_date_created, price, user_id, phone_number,location));
 
@@ -515,8 +543,8 @@ public class MyDatabase extends SQLiteOpenHelper {
                 String description = cursor.getString(3);
                 String product_date_created = cursor.getString(4);
                 String price = cursor.getString(5);
-                String phone_number = cursor.getString(7);
-                String location = cursor.getString(8);
+                String phone_number = cursor.getString(8);
+                String location = cursor.getString(7);
                 int user_id = cursor.getInt(6);
                 filtered_products.add(new ProductModel(id, product_name, image_video, description, product_date_created, price, user_id, phone_number,location));
 
