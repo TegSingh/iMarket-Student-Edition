@@ -40,6 +40,7 @@ import java.util.Locale;
 
 public class UserRegistrationActivity extends AppCompatActivity {
 
+    //adding necessary variables
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 2;
     EditText editTextNameRegistration, editTextEmailRegistration, editTextPasswordRegistration;
     FusedLocationProviderClient fusedLocationProviderClient;
