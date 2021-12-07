@@ -54,18 +54,16 @@ public class AddProductActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_SELECT_IMAGE = 2;
     private static final int CAMERA_REQUEST = 100;
 
-    // Add my database helper
+    // ADD MY DATABASE HELPER
     MyDatabase database_helper = new MyDatabase(AddProductActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
-
+        // DEFINE ALL THE VIEWS TO A VARIABLE
         bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setSelectedItemId(R.id.addPost);
-        bottomNavSelection();
-
         saveProductButton = findViewById(R.id.s_button);
         productName = findViewById(R.id.ProductName);
         productPrice = findViewById(R.id.ProductPrice);
@@ -75,25 +73,33 @@ public class AddProductActivity extends AppCompatActivity {
         productLoc = findViewById(R.id.productLocation);
         image_selection = findViewById(R.id.Select_image);
         imageDestination = findViewById(R.id.product_image);
+        // Call the bottom navigation function
+        bottomNavSelection();
 
+        // call current user info method to get the session information
         get_current_user_info();
 
         saveProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // call the get product data method to validate the user inputs and read the input from the user
                 if(getProductData()) {
-                    // Create a user model
+                    // call the product model to store the user inputs
                     product = new ProductModel(product_id, productNameInput, imagePath,
                             productConditionInput, date_Added, productPriceInput, user_id,
                             productUserNumberInput, product_location);
+                    // Insert the product information into database with the help of "ProductModel.java"
+
+                    // Call the insert product method from database
                     boolean result = database_helper.insert_product(product);
                     if (result) {
-                        // Print the updated list
+                        // Print the product all the product information in the terminal
                         ArrayList<ProductModel> product_list = database_helper.get_all_products();
                         print_product_list(product_list);
                         System.out.println("Product Added successfully");
+                        // Toast message for successfully adding the product information in the database
                         Toast.makeText(AddProductActivity.this, "Product added successfully", Toast.LENGTH_SHORT).show();
+                        // Traversing back to the home activity after clicking save button
                         Intent intent = new Intent(AddProductActivity.this, HomeActivity.class);
                         startActivity(intent);
                     }
@@ -103,10 +109,12 @@ public class AddProductActivity extends AppCompatActivity {
 
             }
         });
+        // on click for camera image icon
         image_selection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AddProductActivity.this,"On click works" , Toast.LENGTH_SHORT).show();
+              // Toast.makeText(AddProductActivity.this,"image icon onclick works" , Toast.LENGTH_SHORT).show();
+                // Request permission from user
                 if (ContextCompat.checkSelfPermission(AddProductActivity.this,
                         Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
 
@@ -121,12 +129,12 @@ public class AddProductActivity extends AppCompatActivity {
         });
 
     }
-
+    // gets the session information for the current user that's logged in
     public void get_current_user_info(){
         Cursor cursor;
         cursor = database_helper.getData();
         if(cursor.getCount() == 0) {
-            Toast.makeText(AddProductActivity.this, "No data found in database!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddProductActivity.this, "No user Detected", Toast.LENGTH_SHORT).show();
 
         }else if(cursor.getCount() >0){
             cursor.moveToFirst();
@@ -136,17 +144,17 @@ public class AddProductActivity extends AppCompatActivity {
         }
     }
 
+    // Method for selection image from gallery
     private void selectImage(){
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE);
-        /*if (intent.resolveActivity(getPackageManager()) != null){
-            startActivityForResult(intent, REQUEST_CODE_SELECT_IMAGE);
-        }*/
     }
+    // Method for selecting images through camera
     public void selectCamera(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 100);
     }
+    // check if the permission was granted to the action
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -161,6 +169,7 @@ public class AddProductActivity extends AppCompatActivity {
 
         }
     }
+    // set the image on the screee
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -171,10 +180,12 @@ public class AddProductActivity extends AppCompatActivity {
                     try {
                         InputStream inputStream = getContentResolver().openInputStream(selectedImageUri);
                         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                        // sets the image on the screen with the help of bitmap
                         imageDestination.setImageBitmap(bitmap);
+                        //Makes the image view visible
                         imageDestination.setVisibility(View.VISIBLE);
+                        // get image path and store it a variable
                         imagePath = getPathFromUri(selectedImageUri);
-                        // subtitle.setText(imagePath);
                     } catch (Exception e) {
                         Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -187,15 +198,13 @@ public class AddProductActivity extends AppCompatActivity {
             imageDestination.setVisibility(View.VISIBLE);
             // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
             Uri tempUri = getImageUri_camera(getApplicationContext(), photo);
-
             // CALL THIS METHOD TO GET THE ACTUAL PATH
             File finalFile = new File(getRealPathFromURI(tempUri));
             imagePath =  String.valueOf(finalFile);
-            //System.out.println("This is the path" + finalFile);
 
         }
     }
-
+    // Gets the image path for the image taken by the camera
     public Uri getImageUri_camera(Context inContext, Bitmap inImage) {
         Bitmap OutImage = Bitmap.createScaledBitmap(inImage, 1000, 1000,true);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), OutImage, "Title", null);
@@ -215,7 +224,7 @@ public class AddProductActivity extends AppCompatActivity {
         }
         return path;
     }
-
+    // Gets the image path for the image inside the gallery
     private String getPathFromUri(Uri contentUri){
         String filepath;
         Cursor cursor = getContentResolver()
@@ -236,8 +245,9 @@ public class AddProductActivity extends AppCompatActivity {
 
     // validating the user inputs
     public boolean getProductData(){
-        product_id = database_helper.get_all_products().size() + 1;
 
+        product_id = database_helper.get_all_products().size() + 1;
+        // if and else statement to validate user input
         if(productName.getText().toString().trim().length() == 0){
             productName.setError("Enter Product Name");
         }else if(productPrice.getText().toString().trim().length() == 0){
@@ -257,14 +267,14 @@ public class AddProductActivity extends AppCompatActivity {
             productConditionInput = productCondition.getText().toString().trim();
             productUserNumberInput = productUserNumber.getText().toString().trim();
             product_location = productLoc.getText().toString().trim();
-            //List<Address> addresses = null;
+            // gets the name of the city from the user input
             try {
                 Geocoder geocoder = new Geocoder(this);;
                 List<Address> addresses = geocoder.getFromLocationName(product_location,1);
                 Address address = addresses.get(0);
-                //latlng values can be used to get address
+                //lat-long values can be used to get address
                 product_location = address.getLocality();
-                System.out.println("*****INSIDE GET PRODUCTS DATA FUNCTION****" + product_location);
+              //  System.out.println("*****INSIDE GET PRODUCTS DATA FUNCTION****" + product_location);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -292,12 +302,14 @@ public class AddProductActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.profile:
+                        // intent for going to profile activity
                         Intent intent = new Intent(AddProductActivity.this, ProfileActivity.class);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.home:
+                        // intent for going to home activity
                         Intent intent2 = new Intent(AddProductActivity.this, HomeActivity.class);
                         startActivity(intent2);
                         overridePendingTransition(0,0);

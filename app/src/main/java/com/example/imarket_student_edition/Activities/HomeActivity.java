@@ -26,6 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
+        // ADD MY DATABASE HELPER
         MyDatabase databaseHelper = new MyDatabase(HomeActivity.this);
         BottomNavigationView bottomNavigationView;
         CustomAdapter customAdapter;
@@ -41,41 +42,45 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        System.out.println("called the product page");
+        // DEFINE ALL THE VIEWS TO A VARIABLE
         bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setSelectedItemId(R.id.home);
         userName = findViewById(R.id.UserLoginName);
         pick_location = findViewById(R.id.pickLocation);
         empty_txt = findViewById(R.id.text_empty_home_pg);
         empty_txt_img = findViewById(R.id.empty_product_image_home);
-        get_current_user_info();
-        bottomNavSelection();
         locationImage = findViewById(R.id.imageButton2);
+        // call current user info method to get the session information
+        get_current_user_info();
+        // Call the bottom navigation function
+        bottomNavSelection();
+        // call custom adapter method for initiate the recycle view
         callCustomAdaptor();
+
         locationImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // switch to maps activity
                 Intent intent = new Intent(HomeActivity.this,MapsActivity.class);
                 startActivity(intent);
             }
         });
     }
-
+    //  menu inflater for the top navigation
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu,menu);
         return true;
     }
-
+    // logout button
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent = new Intent(HomeActivity.this,UserAuthenticationActivity.class);
         startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
-
+    // recreate the activity after making changes in the custom adapter file
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -86,19 +91,24 @@ public class HomeActivity extends AppCompatActivity {
 
     //  calls CustomAdaptor java file
     public  void  callCustomAdaptor(){
+            // check if the user has wish to filter the recycle view with the location
         if(getIntent().hasExtra("Location")){
             String location = getIntent().getStringExtra("Location");
-            System.out.println("*******" + location);
+          //  System.out.println("*******" + location);
             //databaseHelper.insert_location(location,user_id);
+            // call the search function in database file to search by location
             productModelList = databaseHelper.search_products(location);
             pick_location.setText(location);
 
         } else {
+            // to display all product from database
             productModelList = databaseHelper.get_all_products();
             if(productModelList.isEmpty()){
+                // if database is empty then show the empty database image on screen
                 empty_txt.setVisibility(View.VISIBLE);
                 empty_txt_img.setVisibility(View.VISIBLE);
             }else {
+               
                 empty_txt.setVisibility(View.GONE);
                 empty_txt_img.setVisibility(View.GONE);
             }
