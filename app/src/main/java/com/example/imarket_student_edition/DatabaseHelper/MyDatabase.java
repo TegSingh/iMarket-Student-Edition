@@ -261,35 +261,6 @@ public class MyDatabase extends SQLiteOpenHelper {
         return products;
     }
 
-    // Method  to update a user in the table
-    public boolean update_user(UserModel user, UserModel user_updated) {
-        System.out.println("Database helper: Update the user with id: ");
-        System.out.println("Previous User: " + user.toString());
-        System.out.println("Updated User: " + user_updated.toString());
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        // Content values to be used as update argument
-        ContentValues cv = new ContentValues();
-        cv.put("id", user_updated.getId());
-        cv.put("name", user_updated.getName());
-        cv.put("email", user_updated.getEmail());
-        cv.put("password", user_updated.getPassword());
-        cv.put("data_created", user_updated.getDate_created());
-
-        String whereClause = "id = ?";
-        Integer id = new Integer(user_updated.getId());
-
-        String whereArgs[] = {id.toString()};
-        int result = db.update(User_Column_Name, cv, whereClause, whereArgs);
-        if (result == 1) {
-            System.out.println("Update successful User");
-            return true;
-        } else {
-            System.out.println("Could not update user");
-            return false;
-        }
-    }
     // Method  to update a user in the product table
 
     public void updateProduct(String id, String product_name, String condition, String price, String contactPhone, String location, String phonenum, String imgepath){
@@ -327,36 +298,6 @@ public class MyDatabase extends SQLiteOpenHelper {
         }
     }
 
-    // Method  to update a user in the product table
-    public boolean update_product(ProductModel product, ProductModel product_updated) {
-        System.out.println("Database helper: Update the Product");
-        System.out.println("Previous location: " + product.toString());
-        System.out.println("Updated location: " + product_updated.toString());
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        // Content values to be used as update argument
-        ContentValues cv = new ContentValues();
-        //cv.put("id", product_updated.getId());
-        cv.put("name", product_updated.getName());
-        cv.put("image_video", product_updated.getImg_video_url());
-        cv.put("description", product_updated.getDescription());
-        //cv.put("date_added", product_updated.getDate_added());
-        cv.put("price", product_updated.getPrice());
-        //cv.put("user_id", product_updated.getUser_id());
-
-        String whereClause = "id = ?";
-        Integer id = new Integer(product_updated.getId());
-
-        String whereArgs[] = {id.toString()};
-        int result = db.update(Product_Column_Name, cv, whereClause, whereArgs);
-        if (result == 1) {
-            System.out.println("Database helper: Update successful Product");
-            return true;
-        } else {
-            System.out.println("Database helper: Could not update Product");
-            return false;
-        }
-    }
 
     // Method to add user to the table
     public boolean insert_user(UserModel user) {
@@ -431,38 +372,6 @@ public class MyDatabase extends SQLiteOpenHelper {
 
     }
 
-    // Method to delete a product from the table
-    public boolean delete_user(int id) {
-
-        System.out.println("Database helper: Delete user method called");
-        // Define the database
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        Integer col_id = id;
-        String[] args = {col_id.toString()};
-        int num_rows_deleted = 0;
-        try {
-            num_rows_deleted = db.delete(User_Table, User_Column_ID + " = ? ", args);
-        } catch (Exception e) {
-            System.out.println("Database helper: Error executing delete query for user");
-            db.close();
-            return false;
-        }
-
-        if (num_rows_deleted == 1) {
-            System.out.println("Database helper: User row deleted successfully");
-            db.close();
-            return true;
-        } else if (num_rows_deleted == 0) {
-            System.out.println("Database helper: Error deleting user, Row not found");
-            db.close();
-            return false;
-        } else {
-            System.out.println("Database helper: Error deleting User: too many rows deleted: " + num_rows_deleted);
-            db.close();
-            return true;
-        }
-    }
 
     // Method to delete a user from the table
     public boolean delete_product(int id) {

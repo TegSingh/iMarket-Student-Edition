@@ -72,11 +72,11 @@ public class UpdateProductActivity extends AppCompatActivity {
                 productNameInput =  productName.getText().toString().trim();
                 productPriceInput = productPrice.getText().toString().trim();
                 productConditionInput= productCondition.getText().toString().trim();
-                contactPhone = productNum.getText().toString().trim();
-                updateproductLocation = update_location.getText().toString().trim();
+                //contactPhone = productNum.getText().toString().trim();
+               updateproductLocation = update_location.getText().toString().trim();
                 updateproductnumber = update_number.getText().toString().trim();
-                System.out.println("81888383888************"+ updateproductnumber);
-                System.out.println("81888383888************"+ updateproductLocation);
+                //System.out.println("81888383888************"+ updateproductnumber);
+                //System.out.println("81888383888************"+ updateproductLocation);
 
                 database_helper.updateProduct(String.valueOf(user_id),productNameInput, productConditionInput,productPriceInput,contactPhone,updateproductLocation,updateproductnumber, imagePath);
                 Intent intent = new Intent(UpdateProductActivity.this, ProfileActivity.class);

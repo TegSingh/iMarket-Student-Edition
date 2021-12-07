@@ -23,19 +23,19 @@ import java.util.List;
 public class CustomProfileAdapter extends RecyclerView.Adapter<CustomProfileAdapter.MyViewHolder> {
     Context context;
     private List<ProductModel> productModelList;
-    private List<ProductModel> productModeSource;
-    Activity activity;
 
+    Activity activity;
+    // gets the context from the parent activity and the productModel list
     CustomProfileAdapter(Activity activity, Context context, List<ProductModel> productModelList){
         this.context = context;
         this.activity = activity;
         this.productModelList = productModelList;
-        productModeSource = productModelList;
     }
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        System.out.println("Called onCreateViewHolder");
+        //System.out.println("Called onCreateViewHolder");
+        // set an inflater to set up the resource file called "profile_recycle_view"
         LayoutInflater inflater = LayoutInflater.from(context);
         View view =  inflater.inflate(R.layout.profile_recycle_view, parent,false);
         return new MyViewHolder(view);
@@ -44,6 +44,7 @@ public class CustomProfileAdapter extends RecyclerView.Adapter<CustomProfileAdap
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        // bind the productModel List with the vew holder
         holder.setProduct(productModelList.get(position));
 
     }
@@ -67,8 +68,7 @@ public class CustomProfileAdapter extends RecyclerView.Adapter<CustomProfileAdap
         }
 
         void setProduct(ProductModel productmodel){
-
-            System.out.println("Set product method called with product:"+ productmodel.toString());
+         //   System.out.println("Set product method called with product:"+ productmodel.toString());
             productName.setText(productmodel.getName());
             if(productmodel.getName().trim().isEmpty()){
                 productName.setText("No text found");
@@ -77,7 +77,7 @@ public class CustomProfileAdapter extends RecyclerView.Adapter<CustomProfileAdap
             if(productmodel.getPrice().trim().isEmpty()){
                 productName.setText("No price found");
             }
-            if (!(productmodel.getImg_video_url()).equals("NoImage")){
+            if (!(productmodel.getImg_video_url()).equals("No Image")){
                 productImage.setImageBitmap(BitmapFactory.decodeFile(String.valueOf(productmodel.getImg_video_url())));
                 productImage.setVisibility(View.VISIBLE);
             }else {
