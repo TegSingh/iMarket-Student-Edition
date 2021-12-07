@@ -23,11 +23,6 @@ public class MainActivity extends AppCompatActivity {
     public void startMarket(View v) {
         System.out.println("Button to the start application clicked. Moving to Login page");
         // Create intent to move to login activity and start activity
-
-       // Intent start_application_intent = new Intent(this, UserAuthenticationActivity.class);
-        //Intent start_application_intent = new Intent(this, AddProductActivity.class);
-
-        //Intent start_application_intent = new Intent(this, UserAuthenticationActivity.class);
         Intent start_application_intent = new Intent(this, UserAuthenticationActivity.class);
         startActivity(start_application_intent);
     }

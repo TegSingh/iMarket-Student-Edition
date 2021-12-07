@@ -20,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ProductActivity extends AppCompatActivity {
 
+    //declaring necessary variables
     private Cursor cursor;
     private ImageView p_image;
     private ImageButton imageButton;
@@ -27,6 +28,7 @@ public class ProductActivity extends AppCompatActivity {
     private TextView p_name, p_price, p_description, c_name, c_number,p_location;
     private String pdbName, pdbPrice, pdbDescription, pdbImage, cdbNumber, userID,product_page_location;
     public String uname;
+    //declaring database helper
     MyDatabase db_helper;
 
     @Override
@@ -34,6 +36,7 @@ public class ProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
+        //initializing database helper
         db_helper = new MyDatabase(ProductActivity.this);
         p_name = findViewById(R.id.product_name);
         p_price = findViewById(R.id.product_price);
@@ -58,7 +61,7 @@ public class ProductActivity extends AppCompatActivity {
         });
         bottomNavSelection();
     }
-
+    //method that receives intent data passed from other activites
     public void getIntentData() {
         if(getIntent().hasExtra("name") && getIntent().hasExtra("price") &&
                 getIntent().hasExtra("condition") && getIntent().hasExtra("image") &&
@@ -85,7 +88,7 @@ public class ProductActivity extends AppCompatActivity {
             Toast.makeText(ProductActivity.this, "No data found.", Toast.LENGTH_SHORT).show();
         }
     }
-
+    //method to get seller contact info
     public void getContactData(){
         cursor = db_helper.get_user_profile(Integer.parseInt(userID));
         if(cursor.getCount() == 0) {
@@ -97,7 +100,7 @@ public class ProductActivity extends AppCompatActivity {
         }
     }
 
-
+    //navigate between the three main pages from the bottom nav bar
     public void bottomNavSelection() {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -128,5 +131,4 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
     }
-
 }

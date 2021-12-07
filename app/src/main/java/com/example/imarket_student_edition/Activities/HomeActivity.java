@@ -119,6 +119,7 @@ public class HomeActivity extends AppCompatActivity {
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
     }
+    //method to get user info
     public void get_current_user_info(){
         Cursor cursor;
         cursor = databaseHelper.getData();
@@ -132,7 +133,7 @@ public class HomeActivity extends AppCompatActivity {
             user_Name = cursor.getString(1);
             }
     }
-
+    //navigate between the three main pages from the bottom nav bar
     public void bottomNavSelection() {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
